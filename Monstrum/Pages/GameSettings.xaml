@@ -5,10 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Monstrum.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1000" d:DesignWidth="1000"
       Title="GameSettings">
 
-    <Grid>
-        
-    </Grid>
+    <Border Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel>
+            <TextBlock Text="УРОВЕНЬ СЛОЖНОСТИ" Style="{StaticResource txtButton}"/>
+
+            <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
+                <Border x:Name="pnlEasy" MouseDown="pnlEasy_MouseDown" Width="400" Style="{StaticResource roundButton}">
+                    <StackPanel>
+                        <Image Source="/Resources/dificulLevel1.png" Height="100" Margin="10"/>
+                        <TextBlock Text="EASY" Style="{StaticResource txtButton}"/>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="pnlMedium" MouseDown="pnlMedium_MouseDown" Width="400" Style="{StaticResource roundButton}">
+                    <StackPanel>
+                        <Image Source="/Resources/dificultLevel2.png" Height="100" Margin="10"/>
+                        <TextBlock Text="MEDIUM" Style="{StaticResource txtButton}"/>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="pnlHard" MouseDown="pnlHard_MouseDown" Width="400" Style="{StaticResource roundButton}">
+                    <StackPanel>
+                        <Image Source="/Resources/dificultLevel3.png" Height="100" Margin="10"/>
+                        <TextBlock Text="HARD" Style="{StaticResource txtButton}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <TextBlock Text="Выберите уровень сложности игры"/>
+            <TextBlock Text="Будьте внимательны!" Style="{StaticResource txtButton}"/>
+            <TextBlock Text="Уровень сложности нельзя изменить в процессе игры..."/>
+
+        </StackPanel>
+    </Border>
 </Page>

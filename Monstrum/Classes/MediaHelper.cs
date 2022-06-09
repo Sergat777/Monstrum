@@ -35,7 +35,6 @@ namespace Monstrum.Classes
         public static void PlayAudio(string soundName)
         {
            (new SoundPlayer(SoundsPath + soundName + ".wav")).PlaySync();
-            
            PlayMusic();
         }
 

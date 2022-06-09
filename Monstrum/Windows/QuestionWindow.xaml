@@ -1,0 +1,22 @@
+﻿<Window x:Class="Monstrum.Windows.QuestionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Monstrum.Windows"
+        mc:Ignorable="d"
+        Title="MONSTRUM" Height="500" Width="650" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Icon="/Resources/logo.ico" Background="{StaticResource paleYellow}">
+    <DockPanel Margin="20">
+        <DockPanel DockPanel.Dock="Bottom">
+            <Border x:Name="btYes" Style="{StaticResource roundButton}" HorizontalAlignment="Left" MouseDown="btYes_MouseDown">
+                <TextBlock Text="YES" Style="{StaticResource txtButton}"/>
+            </Border>
+            <Border x:Name="btNo" Style="{StaticResource roundButton}" HorizontalAlignment="Right" MouseDown="btNo_MouseDown">
+                <TextBlock Text="NO" Style="{StaticResource txtButton}"/>
+            </Border>
+        </DockPanel>
+        <Image DockPanel.Dock="Left" Margin="5" Source="/Resources/ask.png"/>
+        <TextBlock Text="ВЫ УВЕРЕНЫ В СВОЕМ ВЫБОРЕ?" VerticalAlignment="Center"/>
+    </DockPanel>
+</Window>

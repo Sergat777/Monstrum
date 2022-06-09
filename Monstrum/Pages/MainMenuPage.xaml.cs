@@ -28,8 +28,10 @@ namespace Monstrum.Pages
 
         private void btPlay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Classes.ControllerManager.MainAppFrame.IsEnabled = false;
+            Classes.ControllerManager.MainAppFrame.Navigate(new GameSettings());
             Classes.MediaHelper.PlayAudio("startSound");
+            Classes.ControllerManager.MainAppFrame.IsEnabled = true;
         }
 
         private void btCreator_MouseDown(object sender, MouseButtonEventArgs e)

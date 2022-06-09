@@ -5,6 +5,8 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        <SolidColorBrush x:Key="paleYellow" Color="#F5C59A"/>
+
         <Style TargetType="Frame">
             <Setter Property="NavigationUIVisibility" Value="Hidden"/>
         </Style>
@@ -35,7 +37,7 @@
             <Setter Property="Margin" Value="15"/>
             <Setter Property="Padding" Value="15"/>
             <Setter Property="CornerRadius" Value="25"/>
-            <Setter Property="Background" Value="#F5C59A"/>
+            <Setter Property="Background" Value="{StaticResource paleYellow}"/>
         </Style>
         
     </Application.Resources>

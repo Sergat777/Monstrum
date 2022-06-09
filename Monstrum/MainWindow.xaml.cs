@@ -31,7 +31,7 @@ namespace Monstrum
             ControllerManager.AppWindow = this;
             ControllerManager.MainAppFrame = mainAppFrame;
 
-            mainAppFrame.Navigate(new Pages.MainMenuPage());
+            mainAppFrame.Navigate(new Pages.GameSettings());
         }
     }
 }

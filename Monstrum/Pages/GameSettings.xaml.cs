@@ -24,5 +24,32 @@ namespace Monstrum.Pages
         {
             InitializeComponent();
         }
+
+        private void pnlEasy_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (new Windows.QuestionWindow().ShowDialog().Value)
+            {
+                Classes.GameSetter.DificultLevel = 1;
+
+            }
+        }
+
+        private void pnlMedium_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (new Windows.QuestionWindow().ShowDialog().Value)
+            {
+                Classes.GameSetter.DificultLevel = 2;
+
+            }
+        }
+
+        private void pnlHard_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (new Windows.QuestionWindow().ShowDialog().Value)
+            {
+                Classes.GameSetter.DificultLevel = 3;
+
+            }
+        }
     }
 }
