@@ -11,6 +11,14 @@
             <Setter Property="NavigationUIVisibility" Value="Hidden"/>
         </Style>
 
+        <Style TargetType="ProgressBar">
+            <Setter Property="BorderBrush" Value="Crimson"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
         <Style TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>

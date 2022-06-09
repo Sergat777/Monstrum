@@ -15,7 +15,7 @@
                 <Image x:Name="imgLoad" gif:ImageBehavior.AnimatedSource="/Resources/loading.gif"
                    Height="90" Width="90" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
                 <Border x:Name="btStart" MouseDown="btStart_MouseDown"
-                        Style="{StaticResource roundButton}" Visibility="Collapsed" >
+                        Style="{StaticResource roundButton}">
                     <TextBlock Text="START"/>
                 </Border>
             </DockPanel>

@@ -1,0 +1,91 @@
+﻿<Page x:Class="Monstrum.Pages.GeneralGamePlayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Monstrum.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1300"
+      Title="GeneralGamePlayPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="gridHero" Grid.Column="0"/>
+            <Grid x:Name="gridEnemy" Grid.Column="2"/>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Border x:Name="btHit" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btHit_MouseDown" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image x:Name="imgHit" Source="/Resources/hit.png" Height="70" Width="70"/>
+                        <TextBlock Text="АТАКА" Style="{StaticResource txtButton}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="btBlock" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btHit_MouseDown" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image x:Name="imgBlock" Source="/Resources/block.png" Height="70" Width="70"/>
+                        <TextBlock Text="БЛОК" Style="{StaticResource txtButton}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="btSpare" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btHit_MouseDown" Grid.Column="3">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image x:Name="imgSpare" Source="/Resources/heart.png" Height="70" Width="70"/>
+                        <TextBlock Text="ПОЩАДА" Style="{StaticResource txtButton}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            
+        </Grid>
+
+        <Border Grid.Row="1" Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" Padding="5">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="btInventory" MouseDown="btHit_MouseDown" Margin="5" Padding="5"
+                        Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image x:Name="imgInventory" Source="/Resources/inventory.png" Height="50" Width="50"/>
+                        <TextBlock Text="ИНВЕНТАРЬ" Style="{StaticResource txtButton}" FontSize="28"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
+                    <TextBlock Text="ЗДОРОВЬЕ" Style="{StaticResource txtButton}" FontSize="34"/>
+                    <ProgressBar x:Name="barHealth"/>
+                    <TextBlock x:Name="txtHealth" Style="{StaticResource txtButton}" Text="20/20" FontSize="34"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2">
+                    <TextBlock Text="ВРАГИ" Style="{StaticResource txtButton}" FontSize="34"/>
+                    <ProgressBar x:Name="barEnemy"/>
+                    <TextBlock x:Name="txtEnemy" Style="{StaticResource txtButton}" Text="20/20" FontSize="34"/>
+                </StackPanel>
+                
+            </Grid>
+        </Border>
+        
+    </Grid>
+</Page>

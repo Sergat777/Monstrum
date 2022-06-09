@@ -61,6 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\GeneralGamePlayPage.xaml.cs">
+      <DependentUpon>GeneralGamePlayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\GameSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GeneralGamePlayPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,6 +178,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dodge.png" />
+    <Resource Include="Resources\hit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\heart.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

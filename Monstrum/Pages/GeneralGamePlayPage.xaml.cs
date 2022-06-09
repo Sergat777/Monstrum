@@ -1,8 +1,6 @@
-﻿using Monstrum.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,23 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Monstrum
+namespace Monstrum.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GeneralGamePlayPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GeneralGamePlayPage : Page
     {
-        public MainWindow()
+        public GeneralGamePlayPage()
         {
             InitializeComponent();
+        }
 
-            ControllerManager.AppWindow = this;
-            ControllerManager.MainAppFrame = mainAppFrame;
+        private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
-            MediaHelper.StartWork();
-
-            mainAppFrame.Navigate(new Pages.LoadingPage());
         }
     }
 }

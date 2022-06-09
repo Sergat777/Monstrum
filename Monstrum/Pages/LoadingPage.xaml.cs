@@ -58,7 +58,9 @@ namespace Monstrum.Pages
 
         private void btStart_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Classes.MediaHelper.PlayAudio("winSound");
+            Classes.ControllerManager.MainAppFrame.Navigate(new GeneralGamePlayPage());
+            Classes.MediaHelper.SetGameMusic("standartMusic");
         }
     }
 }
