@@ -29,5 +29,20 @@ namespace Monstrum.Pages
         {
 
         }
+
+        private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btSpare_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btInventory_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

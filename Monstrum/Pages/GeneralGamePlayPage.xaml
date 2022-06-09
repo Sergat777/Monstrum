@@ -35,14 +35,14 @@
                     </StackPanel>
                 </Border>
 
-                <Border x:Name="btBlock" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btHit_MouseDown" Grid.Column="2">
+                <Border x:Name="btBlock" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btBlock_MouseDown"  Grid.Column="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image x:Name="imgBlock" Source="/Resources/block.png" Height="70" Width="70"/>
                         <TextBlock Text="БЛОК" Style="{StaticResource txtButton}"/>
                     </StackPanel>
                 </Border>
 
-                <Border x:Name="btSpare" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btHit_MouseDown" Grid.Column="3">
+                <Border x:Name="btSpare" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btSpare_MouseDown"  Grid.Column="3">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image x:Name="imgSpare" Source="/Resources/heart.png" Height="70" Width="70"/>
                         <TextBlock Text="ПОЩАДА" Style="{StaticResource txtButton}"/>
@@ -64,7 +64,7 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Border x:Name="btInventory" MouseDown="btHit_MouseDown" Margin="5" Padding="5"
+                <Border x:Name="btInventory" MouseDown="btInventory_MouseDown"  Margin="5" Padding="5"
                         Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image x:Name="imgInventory" Source="/Resources/inventory.png" Height="50" Width="50"/>
