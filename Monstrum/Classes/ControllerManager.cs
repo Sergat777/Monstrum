@@ -9,6 +9,8 @@ namespace Monstrum.Classes
 {
     internal class ControllerManager
     {
+        public static MainWindow AppWindow { get; set; }
+
         public static Frame MainAppFrame { get; set; }
     }
 }

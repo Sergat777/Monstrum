@@ -17,13 +17,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Frame x:Name="mainAppFrame" Grid.Row="1"/>
-
         <TextBlock Grid.Row="0" Text="MONSTRUM" FontSize="104" FontWeight="ExtraBold" Foreground="#c00"
                    Margin="25" HorizontalAlignment="Center" TextDecorations="Underline"/>
-
-
         
+        <Frame x:Name="mainAppFrame" Grid.Row="1"/>
+
     </Grid>
 
 </Window>

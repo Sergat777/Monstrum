@@ -25,6 +25,7 @@ namespace Monstrum
         {
             InitializeComponent();
 
+            ControllerManager.AppWindow = this;
             ControllerManager.MainAppFrame = mainAppFrame;
 
             mainAppFrame.Navigate(new Pages.MainMenuPage());
