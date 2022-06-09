@@ -26,10 +26,10 @@ namespace Monstrum
         {
             InitializeComponent();
 
-            MediaHelper.SetGameMusic("standartMusic");
-
             ControllerManager.AppWindow = this;
             ControllerManager.MainAppFrame = mainAppFrame;
+
+            MediaHelper.StartWork();
 
             mainAppFrame.Navigate(new Pages.GameSettings());
         }

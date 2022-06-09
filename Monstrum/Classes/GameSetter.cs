@@ -9,6 +9,6 @@ namespace Monstrum.Classes
     static class GameSetter
     {
         public static byte DificultLevel { get; set; }
-        public static bool LastAnswer { get; set; }
+        public static byte Chapter = 1;
     }
 }
