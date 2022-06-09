@@ -1,0 +1,42 @@
+﻿<Application x:Class="Monstrum.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Monstrum"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <Style TargetType="Frame">
+            <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Copperplate Gothic"/>
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="Foreground" Value="Crimson"/>
+        </Style>
+
+        <Style x:Key="txtButton" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Copperplate Gothic"/>
+            <Setter Property="FontSize" Value="54"/>
+            <Setter Property="Foreground" Value="Crimson"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="roundButton" TargetType="Border">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="Crimson"/>
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="CornerRadius" Value="25"/>
+            <Setter Property="Background" Value="#F5C59A"/>
+        </Style>
+        
+    </Application.Resources>
+</Application>
