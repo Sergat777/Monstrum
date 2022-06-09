@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace Monstrum.Classes
 {
-    internal class ControllerManager
+    class ControllerManager
     {
         public static MainWindow AppWindow { get; set; }
 

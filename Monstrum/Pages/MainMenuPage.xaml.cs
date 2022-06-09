@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace Monstrum.Pages
 
         private void btPlay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Classes.MediaHelper.PlayAudio("startSound");
         }
 
         private void btCreator_MouseDown(object sender, MouseButtonEventArgs e)
