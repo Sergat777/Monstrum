@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\GameSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +88,9 @@
   <ItemGroup>
     <Compile Include="Pages\CreatorPage.xaml.cs">
       <DependentUpon>CreatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GameSettings.xaml.cs">
+      <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>

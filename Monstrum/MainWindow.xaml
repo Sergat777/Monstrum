@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MONSTRUM" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Resources/logo.ico">
     <Window.Background>
-        <ImageBrush ImageSource="/Resources/startBG.jpg"/>
+        <ImageBrush ImageSource="/Resources/startBG.jpg" Opacity="1"/>
     </Window.Background>
 
     <Grid Margin="20">

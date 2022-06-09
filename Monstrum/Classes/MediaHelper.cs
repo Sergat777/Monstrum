@@ -4,7 +4,10 @@ using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
 namespace Monstrum.Classes
@@ -12,8 +15,14 @@ namespace Monstrum.Classes
     static
         class MediaHelper
     {
-        public static string ResourcesPath = AppDomain.CurrentDomain.BaseDirectory;
+        public enum Screen
+        {
+            Dark,
+            Red,
+            Green
+        }
 
+        public static string ResourcesPath = AppDomain.CurrentDomain.BaseDirectory;
         public static string SoundsPath = ResourcesPath + "Sounds\\";
         public static string ImagesPath = ResourcesPath + "Images\\";
         public static string AmunitionsPath = ImagesPath + "Amunitions\\";
@@ -25,7 +34,7 @@ namespace Monstrum.Classes
 
         public static void PlayAudio(string soundName)
         {
-            (new SoundPlayer(SoundsPath + soundName + ".wav")).PlaySync();
+           (new SoundPlayer(SoundsPath + soundName + ".wav")).PlaySync();
             
            PlayMusic();
         }
@@ -43,7 +52,6 @@ namespace Monstrum.Classes
             currentMusic.Stop();
             currentMusic.SoundLocation = SoundsPath + musicName + ".wav";
             PlayMusic();
-
         }
 
         public static void PlayMusic()

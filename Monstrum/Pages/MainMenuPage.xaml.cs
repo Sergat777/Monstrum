@@ -28,6 +28,7 @@ namespace Monstrum.Pages
 
         private void btPlay_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
             Classes.MediaHelper.PlayAudio("startSound");
         }
 
