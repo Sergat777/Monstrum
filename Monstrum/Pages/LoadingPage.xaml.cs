@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,7 +51,7 @@ namespace Monstrum.Pages
             else
             {
                 typingTimer.Stop();
-                Task.Delay(2000);
+                Thread.Sleep(2000);
                 imgLoad.Visibility = Visibility.Collapsed;
                 btStart.Visibility = Visibility.Visible;
             }

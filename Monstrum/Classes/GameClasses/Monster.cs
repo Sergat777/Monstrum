@@ -25,6 +25,7 @@ namespace Monstrum.Classes.GameClasses
             _armor = armor;
         }
 
+        // getters
         public float GetMaxHealth()
         {
             return _maxHealth;
@@ -35,16 +36,42 @@ namespace Monstrum.Classes.GameClasses
             return _health;
         }
 
+        public float GetDamage()
+        {
+            return _damage;
+        }
+
+        public float GetArmor()
+        {
+            return _armor;
+        }
+
+
+        // setters
+        public void SetMaxHealth(float maxHealth)
+        {
+            _maxHealth = maxHealth;
+        }
+
+        public void SetDamage(float damage)
+        {
+            _damage = damage;
+        }
+
+        public void SetArmor(float armor)
+        {
+            _armor = armor;
+        }
+
         public void ApplyDamage(float incommingDamage)
         {
             if (incommingDamage > _armor)
-                _health -= incommingDamage - _armor;
-            CheckHealth();
-        }
+                if (_health - incommingDamage <= 0)
+                    _health = 0;
+                else
+                    _health -= incommingDamage - _armor;
 
-        public void Attack(Monster victim)
-        {
-            victim.ApplyDamage(_damage + rndm.Next(-10, 11));
+            CheckHealth();
         }
 
         public string GetName()

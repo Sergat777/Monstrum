@@ -27,7 +27,7 @@
             <Grid x:Name="gridHero" Grid.Column="0"/>
             <Grid x:Name="gridEnemy" Grid.Column="2"/>
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <StackPanel x:Name="pnlAction" Grid.Column="1" VerticalAlignment="Center" Opacity="1">
                 <Border x:Name="btHit" Style="{StaticResource roundButton}" Height="120" Width="400" MouseDown="btHit_MouseDown" Grid.Column="1">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image x:Name="imgHit" Source="/Resources/hit.png" Height="70" Width="70"/>
@@ -79,8 +79,8 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2">
                     <TextBlock Text="ВРАГИ" Style="{StaticResource txtButton}" FontSize="34"/>
-                    <ProgressBar x:Name="barEnemy"/>
-                    <TextBlock x:Name="txtEnemy" Style="{StaticResource txtButton}" FontSize="34"/>
+                    <ProgressBar x:Name="barEnemies" Foreground="Black"/>
+                    <TextBlock x:Name="txtEnemies" Style="{StaticResource txtButton}" FontSize="34"/>
                 </StackPanel>
                 
             </Grid>

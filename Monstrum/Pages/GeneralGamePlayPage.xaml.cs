@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Monstrum.Classes;
 using Monstrum.Classes.GameClasses;
 
 namespace Monstrum.Pages
@@ -21,17 +23,38 @@ namespace Monstrum.Pages
     /// </summary>
     public partial class GeneralGamePlayPage : Page
     {
+        DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+
         public GeneralGamePlayPage()
         {
             InitializeComponent();
 
-            Monster firstMonster = new Monster(Classes.GameSetter.HeroName, (float)9.5, 10);
-            MonsterView monster = new MonsterView(firstMonster);
-            gridHero.Children.Add(monster);
+            timer.Tick += Step;
+
+            barEnemies.Maximum = GameSetter.EnemiesCounter;
+            txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
+
+            Monster hero = new Monster(GameSetter.HeroName, GameSetter.HeroHealth,
+                                                GameSetter.HeroDamage, GameSetter.HeroArmor);
+            GameSetter.Hero = new MonsterView(hero);
+            gridHero.Children.Add(GameSetter.Hero);
+
+            GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
+            gridEnemy.Children.Add(GameSetter.Enemy);
         }
 
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            ControllerManager.MainAppFrame.IsEnabled = false;
+            pnlAction.Opacity = 0.5;
+            GameSetter.Hero.Attack(GameSetter.Enemy);
+            timer.Start();
+            if (GameSetter.Enemy.IsDead())
+            {
+                GameSetter.KillCounter++;
+                barEnemies.Value = GameSetter.KillCounter;
+                txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
+            }
         }
 
         private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,7 +69,19 @@ namespace Monstrum.Pages
 
         private void btInventory_MouseDown(object sender, MouseButtonEventArgs e)
         {
+        }
 
+        private void Step(object sender, EventArgs e)
+        {
+            if (GameSetter.Enemy.IsDead())
+            {
+                gridEnemy.Children.Clear();
+                GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
+                gridEnemy.Children.Add(GameSetter.Enemy);
+            }
+            timer.Stop();
+            ControllerManager.MainAppFrame.IsEnabled = true;
+            pnlAction.Opacity = 1;
         }
     }
 }

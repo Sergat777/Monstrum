@@ -27,7 +27,7 @@ namespace Monstrum.Classes.GameClasses
             Width = 300,
             Margin = new Thickness(5)
         };
-        private Grid _dialogGrid = new Grid();
+        // private Grid _dialogGrid = new Grid();
 
         public MonsterView(Monster monster)
         {
@@ -41,12 +41,37 @@ namespace Monstrum.Classes.GameClasses
             _healthPanel.Children.Add(_healthCounter);
             Children.Add(_healthPanel);
             Children.Add(_image);
-           // Children.Add(_dialogGrid);
+            // Children.Add(_dialogGrid);
+        }
+
+        public Monster GetMonster()
+        {
+            return _monster;
+        }
+
+        public void Attack(MonsterView target)
+        {
+            target.ApplyDamage(_monster.GetDamage());
+        }
+
+        public void ApplyDamage(float damage)
+        {
+            _monster.ApplyDamage(damage);
+            UpdateHealthPanel();
+            UpdateImage();
         }
 
         public void UpdateImage()
         {
             MediaHelper.SetMonsterImage(_image, _monster.GetName());
+        }
+
+        public bool IsDead()
+        {
+            if (_healthBar.Value <= 0)
+                return true;
+            else
+                return false;
         }
 
         public void UpdateHealthPanel()
