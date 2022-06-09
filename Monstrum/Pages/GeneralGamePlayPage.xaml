@@ -73,15 +73,14 @@
                 </Border>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-                    <TextBlock Text="ЗДОРОВЬЕ" Style="{StaticResource txtButton}" FontSize="34"/>
-                    <ProgressBar x:Name="barHealth"/>
-                    <TextBlock x:Name="txtHealth" Style="{StaticResource txtButton}" Text="20/20" FontSize="34"/>
+                    <TextBlock Text="Задание: " Style="{StaticResource txtButton}" FontSize="28"/>
+                    <TextBlock x:Name="txtTask" Style="{StaticResource txtButton}" FontSize="28"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2">
                     <TextBlock Text="ВРАГИ" Style="{StaticResource txtButton}" FontSize="34"/>
                     <ProgressBar x:Name="barEnemy"/>
-                    <TextBlock x:Name="txtEnemy" Style="{StaticResource txtButton}" Text="20/20" FontSize="34"/>
+                    <TextBlock x:Name="txtEnemy" Style="{StaticResource txtButton}" FontSize="34"/>
                 </StackPanel>
                 
             </Grid>

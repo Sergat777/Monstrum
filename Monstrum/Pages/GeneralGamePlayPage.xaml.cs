@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Monstrum.Classes.GameClasses;
 
 namespace Monstrum.Pages
 {
@@ -23,11 +24,14 @@ namespace Monstrum.Pages
         public GeneralGamePlayPage()
         {
             InitializeComponent();
+
+            Monster firstMonster = new Monster(Classes.GameSetter.HeroName, (float)9.5, 10);
+            MonsterView monster = new MonsterView(firstMonster);
+            gridHero.Children.Add(monster);
         }
 
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
         }
 
         private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)

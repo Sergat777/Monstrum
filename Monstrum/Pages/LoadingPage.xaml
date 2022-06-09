@@ -16,7 +16,7 @@
                    Height="90" Width="90" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
                 <Border x:Name="btStart" MouseDown="btStart_MouseDown"
                         Style="{StaticResource roundButton}">
-                    <TextBlock Text="START"/>
+                    <TextBlock Text="START" Style="{StaticResource txtButton}"/>
                 </Border>
             </DockPanel>
             <StackPanel>

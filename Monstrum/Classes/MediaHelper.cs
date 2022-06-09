@@ -49,6 +49,11 @@ namespace Monstrum.Classes
            PlayMusic();
         }
 
+        public static void SetMonsterImage(Image image, string monsterName)
+        {
+            image.Source = new BitmapImage(new Uri(MonstersPath + monsterName + ".png"));
+        }
+
         public static void SetBackground(string backroundName)
         {
             ControllerManager.AppWindow.Background = new ImageBrush()

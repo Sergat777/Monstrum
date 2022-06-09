@@ -61,6 +61,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\GameClasses\Monster.cs" />
+    <Compile Include="Classes\GameClasses\MonsterView.cs" />
     <Compile Include="Pages\GeneralGamePlayPage.xaml.cs">
       <DependentUpon>GeneralGamePlayPage.xaml</DependentUpon>
     </Compile>
@@ -191,6 +193,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\lose.png" />
+    <Resource Include="Resources\win.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
