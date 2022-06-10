@@ -8,13 +8,14 @@ namespace Monstrum.Classes.GameClasses
 {
     internal class Monster
     {
-        private Random rndm = new Random();
+       // private Random rndm = new Random();
 
         private string _name;
         private float _maxHealth;
         private float _health;
         private float _damage;
         private float _armor;
+        private bool _isBlock = false;
 
         public Monster(string name, float maxHealth, float damage, float armor = 0)
         {
@@ -26,6 +27,11 @@ namespace Monstrum.Classes.GameClasses
         }
 
         // getters
+        public string GetName()
+        {
+            return _name;
+        }
+
         public float GetMaxHealth()
         {
             return _maxHealth;
@@ -63,6 +69,28 @@ namespace Monstrum.Classes.GameClasses
             _armor = armor;
         }
 
+        public void OnBlock()
+        {
+            _isBlock = true;
+
+            if (_armor != 0)
+                _armor *= 2;
+            else
+                _armor = 1;
+        }
+
+        public void OffBlock()
+        {
+            if (_isBlock)
+            {
+                _isBlock = false;
+                if (_armor != 1)
+                    _armor /= 2;
+                else
+                    _armor = 0;
+            }
+        }
+
         public void ApplyDamage(float incommingDamage)
         {
             if (incommingDamage > _armor)
@@ -71,12 +99,9 @@ namespace Monstrum.Classes.GameClasses
                 else
                     _health -= incommingDamage - _armor;
 
-            CheckHealth();
-        }
+            OffBlock();
 
-        public string GetName()
-        {
-            return _name;
+            CheckHealth();
         }
 
         public void CheckHealth()

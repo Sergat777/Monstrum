@@ -33,12 +33,6 @@ namespace Monstrum.Classes
 
         private static MediaPlayer _currentMusic = new MediaPlayer();
 
-        private static DispatcherTimer _timerDarkScreen = new DispatcherTimer()
-                                                            { Interval = TimeSpan.FromMilliseconds(31.25) };
-        private static double _opacityDarkScreen;
-        private static bool _opasityGrow;
-        private static Page _nextPage;
-        private static string _nextMusic;
 
         public static void StartWork()
         {
@@ -47,6 +41,7 @@ namespace Monstrum.Classes
 
             _currentMusic.MediaEnded += MusicFinish;
             _timerDarkScreen.Tick += ChangeDark;
+            _typingTimer.Tick += Type;
 
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
             string text = reader.ReadToEnd();
@@ -68,6 +63,11 @@ namespace Monstrum.Classes
             };
         }
 
+        private static DispatcherTimer _timerDarkScreen = new DispatcherTimer(){ Interval = TimeSpan.FromMilliseconds(31.25) };
+        private static double _opacityDarkScreen;
+        private static bool _opasityGrow;
+        private static Page _nextPage;
+
         public static void GoNewScreen(Page nextPage, string soundName = null)
         {
             if (soundName != null)
@@ -83,16 +83,16 @@ namespace Monstrum.Classes
 
         public static void ChangeDark(object sender, EventArgs e)
         {
-            if (ControllerManager.DarkScreen.Opacity == 1)
+            if (_opacityDarkScreen >= 1)
             {
                 _opasityGrow = false;
                 ControllerManager.MainAppFrame.Navigate(_nextPage);
             }
 
             if (_opasityGrow)
-                _opacityDarkScreen += 0.00390625;
+                _opacityDarkScreen += 0.0390625;
             else
-                _opacityDarkScreen -= 0.00390625;
+                _opacityDarkScreen -= 0.0390625;
 
             ControllerManager.DarkScreen.Opacity = _opacityDarkScreen;
 
@@ -102,6 +102,44 @@ namespace Monstrum.Classes
                 ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
                 _timerDarkScreen.Stop();
             }
+        }
+
+        private static DispatcherTimer _typingTimer = new DispatcherTimer();
+        private static string _words;
+        private static TextBlock _txtBlock;
+        private static int _letterIndex;
+
+        public static void SetTypingAnimation(TextBlock textPlace, string typingText, int speedLetterInMilliseconds = 75)
+        {
+            _typingTimer.Interval = TimeSpan.FromMilliseconds(speedLetterInMilliseconds);
+            _letterIndex = 0;
+            _txtBlock = textPlace;
+            _words = typingText;
+            _typingTimer.Start();
+        }
+
+        public static void StopTypingAnimation()
+        {
+            _typingTimer.Stop();
+        }
+
+        public static void Type(object sender, EventArgs e)
+        {
+            if (ControllerManager.DarkScreen.Visibility == Visibility.Collapsed)
+                if (_letterIndex != _words.Length)
+                {
+                    if (_words[_letterIndex] == '\\' && _words[_letterIndex + 1] == 'n')
+                    {
+                        _txtBlock.Text += "\n";
+                        _letterIndex++;
+                    }
+                    else
+                        _txtBlock.Text += _words[_letterIndex];
+
+                    _letterIndex++;
+                }
+                else
+                    _typingTimer.Stop();
         }
 
         private static void MusicFinish(object sender, EventArgs e)

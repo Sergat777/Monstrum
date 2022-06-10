@@ -23,7 +23,7 @@ namespace Monstrum.Pages
     /// </summary>
     public partial class GeneralGamePlayPage : Page
     {
-        DispatcherTimer timerOfTurns = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+        DispatcherTimer timerOfTurns = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1.25) };
 
         public GeneralGamePlayPage()
         {
@@ -39,7 +39,7 @@ namespace Monstrum.Pages
             MediaHelper.SetGameMusic("standartMusic");
 
             barEnemies.Maximum = GameSetter.EnemiesCounter;
-            txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
+            txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
 
             Monster hero = new Monster(GameSetter.HeroName, GameSetter.HeroHealth,
                                                 GameSetter.HeroDamage, GameSetter.HeroArmor);
@@ -53,10 +53,10 @@ namespace Monstrum.Pages
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GameSetter.Hero.Attack(GameSetter.Enemy);
-            timerOfTurns.Start();
             MediaHelper.PlayAudio("splashSound");
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
+            timerOfTurns.Start();
             if (!GameSetter.Enemy.IsDead())
             {
                 GameSetter.Enemy.Attack(GameSetter.Hero);
@@ -68,16 +68,28 @@ namespace Monstrum.Pages
 
         private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            GameSetter.Hero.Block();
+            MediaHelper.PlayAudio("shieldSound");
+            BlockUnBlockFrame();
+            pnlAction.Opacity = 0.5;
+            timerOfTurns.Start();
+            if (!GameSetter.Enemy.IsDead())
+            {
+                GameSetter.Enemy.Attack(GameSetter.Hero);
+                MediaHelper.PlayAudio("damageSound");
+                if (GameSetter.Hero.IsDead())
+                    (new Windows.LoseWindow()).ShowDialog();
+            }
         }
 
         private void btSpare_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            GameSetter.Enemy.Speak();
         }
 
         private void btInventory_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            new Windows.InventoryWindow().ShowDialog();
         }
 
         private void PlayerTurn(object sender, EventArgs e)
@@ -86,8 +98,8 @@ namespace Monstrum.Pages
             {
                 MediaHelper.PlayAudio("killSound");
                 GameSetter.IncreaseKillCounter();
-                barEnemies.Value = GameSetter.KillCounter;
-                txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
+                barEnemies.Value = GameSetter.FightsCounter;
+                txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
                 gridEnemy.Children.Clear();
                 GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
                 gridEnemy.Children.Add(GameSetter.Enemy);

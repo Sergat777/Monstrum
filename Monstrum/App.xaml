@@ -14,13 +14,14 @@
 
         <Style TargetType="ProgressBar">
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="250"/>
+            <Setter Property="Width" Value="200"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="BorderBrush" Value="Crimson"/>
             <Setter Property="BorderThickness" Value="3"/>
         </Style>
 
         <Style x:Key="modalWindow" TargetType="Window">
+            <Setter Property="Title" Value="MONSTRUM"/>
             <Setter Property="Height" Value="500"/>
             <Setter Property="Width" Value="650"/>
             <Setter Property="ResizeMode" Value="NoResize"/>

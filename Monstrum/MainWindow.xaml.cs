@@ -32,7 +32,7 @@ namespace Monstrum
 
             MediaHelper.StartWork();
 
-            mainAppFrame.Navigate(new Pages.MainMenuPage());
+            mainAppFrame.Navigate(new Pages.LoadingPage());
         }
     }
 }

@@ -79,7 +79,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2">
                     <TextBlock Text="ВРАГИ" Style="{StaticResource txtButton}" FontSize="34"/>
-                    <ProgressBar x:Name="barEnemies" Foreground="Black"/>
+                    <ProgressBar x:Name="barEnemies" Foreground="Black" Width="250"/>
                     <TextBlock x:Name="txtEnemies" Style="{StaticResource txtButton}" FontSize="34"/>
                 </StackPanel>
                 
