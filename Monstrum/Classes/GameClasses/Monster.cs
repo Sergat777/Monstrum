@@ -33,7 +33,7 @@ namespace Monstrum.Classes.GameClasses
 
         public float GetHealth()
         {
-            return _health;
+            return (float)Math.Round(_health, 1);
         }
 
         public float GetDamage()

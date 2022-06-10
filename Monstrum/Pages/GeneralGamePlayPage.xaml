@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Monstrum.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1300"
-      Title="GeneralGamePlayPage">
+      Title="GeneralGamePlayPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -6,22 +6,30 @@
         xmlns:local="clr-namespace:Monstrum.Windows"
         mc:Ignorable="d"
         Title="MONSTRUM" WindowStartupLocation="CenterScreen"
-        Style="{StaticResource modalWindow}" Background="{StaticResource paleGray}">
-    <DockPanel Margin="20">
-        <DockPanel DockPanel.Dock="Bottom">
-            <Border x:Name="btMenu" Style="{StaticResource roundButton}"
-                    HorizontalAlignment="Left" MouseDown="btMenu_MouseDown">
-                <TextBlock Text="MENU" Style="{StaticResource txtButton}"/>
-            </Border>
-            <Border x:Name="btExit" Style="{StaticResource roundButton}"
-                    HorizontalAlignment="Right" MouseDown="btExit_MouseDown">
-                <TextBlock Text="EXIT" Style="{StaticResource txtButton}"/>
-            </Border>
-        </DockPanel>
-        <StackPanel>
-            <Image Height="220" Source="/Resources/lose.png"/>
-            <TextBlock Text="ВПЕРЕДИ ЕЩЕ ТАК МНОГО ПРИКЛЮЧЕНИЙ!&#10;НЕЛЬЗЯ СДАВАТЬСЯ!"
+        Style="{StaticResource modalWindow}">
+    <Border Style="{StaticResource roundButton}" Background="{StaticResource paleGray}" Margin="0">
+        <DockPanel Margin="20">
+            <StackPanel DockPanel.Dock="Top">
+                <Image Height="220" Source="/Resources/lose.png"/>
+                <TextBlock Text="ВПЕРЕДИ ЕЩЕ ТАК МНОГО ПРИКЛЮЧЕНИЙ!&#10;НЕЛЬЗЯ СДАВАТЬСЯ!"
                        Style="{StaticResource txtButton}" FontSize="24"/>
-        </StackPanel>
-    </DockPanel>
+            </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="btMenu" Style="{StaticResource roundButton}" MouseDown="btMenu_MouseDown" Grid.Column="0">
+                    <TextBlock Text="МЕНЮ" Style="{StaticResource txtButton}" FontSize="24"/>
+                </Border>
+                <Border x:Name="btRepeat" Style="{StaticResource roundButton}" MouseDown="btRepeat_MouseDown"  Grid.Column="1">
+                    <TextBlock Text="ПОВТОР" Style="{StaticResource txtButton}" FontSize="24"/>
+                </Border>
+                <Border x:Name="btExit" Style="{StaticResource roundButton}" MouseDown="btExit_MouseDown" Grid.Column="2">
+                    <TextBlock Text="ВЫХОД" Style="{StaticResource txtButton}" FontSize="24"/>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </Border>
 </Window>

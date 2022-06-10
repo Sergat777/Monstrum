@@ -31,6 +31,13 @@ namespace Monstrum.Pages
 
             timerOfTurns.Tick += PlayerTurn;
 
+            GameSetter.SetStandart();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MediaHelper.SetGameMusic("standartMusic");
+
             barEnemies.Maximum = GameSetter.EnemiesCounter;
             txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
 
@@ -47,18 +54,13 @@ namespace Monstrum.Pages
         {
             GameSetter.Hero.Attack(GameSetter.Enemy);
             timerOfTurns.Start();
+            MediaHelper.PlayAudio("splashSound");
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
-
-            if (GameSetter.Enemy.IsDead())
-            {
-                GameSetter.KillCounter++;
-                barEnemies.Value = GameSetter.KillCounter;
-                txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
-            }
-            else
+            if (!GameSetter.Enemy.IsDead())
             {
                 GameSetter.Enemy.Attack(GameSetter.Hero);
+                MediaHelper.PlayAudio("damageSound");
                 if (GameSetter.Hero.IsDead())
                     (new Windows.LoseWindow()).ShowDialog();
             }
@@ -82,6 +84,10 @@ namespace Monstrum.Pages
         {
             if (GameSetter.Enemy.IsDead())
             {
+                MediaHelper.PlayAudio("killSound");
+                GameSetter.IncreaseKillCounter();
+                barEnemies.Value = GameSetter.KillCounter;
+                txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
                 gridEnemy.Children.Clear();
                 GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
                 gridEnemy.Children.Add(GameSetter.Enemy);

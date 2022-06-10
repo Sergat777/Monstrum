@@ -30,10 +30,7 @@ namespace Monstrum.Pages
 
         private void btPlay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Classes.ControllerManager.MainAppFrame.IsEnabled = false;
-            Classes.ControllerManager.MainAppFrame.Navigate(new GameSettings());
-            Classes.MediaHelper.PlayAudio("startSound");
-            Classes.ControllerManager.MainAppFrame.IsEnabled = true;
+            Classes.MediaHelper.GoNewScreen(new GameSettings(), "startSound");
         }
 
         private void btCreator_MouseDown(object sender, MouseButtonEventArgs e)
@@ -43,7 +40,8 @@ namespace Monstrum.Pages
 
         private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (new Windows.QuestionWindow().ShowDialog().Value)
+                Application.Current.Shutdown();
         }
     }
 }

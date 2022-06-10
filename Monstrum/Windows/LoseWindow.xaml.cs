@@ -22,6 +22,7 @@ namespace Monstrum.Windows
         public LoseWindow()
         {
             InitializeComponent();
+            Classes.MediaHelper.PlayAudio("loseSound");
         }
 
         private void btMenu_MouseDown(object sender, MouseButtonEventArgs e)
@@ -34,6 +35,12 @@ namespace Monstrum.Windows
         {
             DialogResult = false;
             App.Current.Shutdown();
+        }
+
+        private void btRepeat_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DialogResult = true;
+            Classes.ControllerManager.MainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
         }
     }
 }

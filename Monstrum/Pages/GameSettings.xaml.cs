@@ -29,9 +29,8 @@ namespace Monstrum.Pages
         {
             if (new Windows.QuestionWindow().ShowDialog().Value)
             {
-                Classes.GameSetter.DificultLevel = 1;
-                Classes.MediaHelper.PlayAudio("winSound");
-                Classes.ControllerManager.MainAppFrame.Navigate(new LoadingPage());
+                Classes.GameSetter.DifficultLevel = 3;
+                Classes.MediaHelper.GoNewScreen(new LoadingPage(), "winSound");
             }
         }
 
@@ -39,9 +38,8 @@ namespace Monstrum.Pages
         {
             if (new Windows.QuestionWindow().ShowDialog().Value)
             {
-                Classes.GameSetter.DificultLevel = 2;
-                Classes.MediaHelper.PlayAudio("winSound");
-                Classes.ControllerManager.MainAppFrame.Navigate(new LoadingPage());
+                Classes.GameSetter.DifficultLevel = 2;
+                Classes.MediaHelper.GoNewScreen(new LoadingPage(), "winSound");
             }
         }
 
@@ -49,9 +47,8 @@ namespace Monstrum.Pages
         {
             if (new Windows.QuestionWindow().ShowDialog().Value)
             {
-                Classes.GameSetter.DificultLevel = 3;
-                Classes.MediaHelper.PlayAudio("winSound");
-                Classes.ControllerManager.MainAppFrame.Navigate(new LoadingPage());
+                Classes.GameSetter.DifficultLevel = 1;
+                Classes.MediaHelper.GoNewScreen(new LoadingPage(), "winSound");
             }
         }
     }

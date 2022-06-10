@@ -28,10 +28,11 @@ namespace Monstrum
 
             ControllerManager.AppWindow = this;
             ControllerManager.MainAppFrame = mainAppFrame;
+            ControllerManager.DarkScreen = darkScreen;
 
             MediaHelper.StartWork();
 
-            mainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
+            mainAppFrame.Navigate(new Pages.MainMenuPage());
         }
     }
 }

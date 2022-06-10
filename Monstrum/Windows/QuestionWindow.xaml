@@ -6,16 +6,18 @@
         xmlns:local="clr-namespace:Monstrum.Windows"
         mc:Ignorable="d"
         Title="MONSTRUM" Style="{StaticResource modalWindow}" WindowStartupLocation="CenterScreen">
-    <DockPanel Margin="20">
-        <DockPanel DockPanel.Dock="Bottom">
-            <Border x:Name="btYes" Style="{StaticResource roundButton}" HorizontalAlignment="Left" MouseDown="btYes_MouseDown">
-                <TextBlock Text="YES" Style="{StaticResource txtButton}"/>
-            </Border>
-            <Border x:Name="btNo" Style="{StaticResource roundButton}" HorizontalAlignment="Right" MouseDown="btNo_MouseDown">
-                <TextBlock Text="NO" Style="{StaticResource txtButton}"/>
-            </Border>
+    <Border Style="{StaticResource roundButton}" Background="{StaticResource paleYellow}" Margin="0">
+        <DockPanel Margin="20">
+            <DockPanel DockPanel.Dock="Bottom">
+                <Border x:Name="btYes" Style="{StaticResource roundButton}" HorizontalAlignment="Left" MouseDown="btYes_MouseDown">
+                    <TextBlock Text="YES" Style="{StaticResource txtButton}"/>
+                </Border>
+                <Border x:Name="btNo" Style="{StaticResource roundButton}" HorizontalAlignment="Right" MouseDown="btNo_MouseDown">
+                    <TextBlock Text="NO" Style="{StaticResource txtButton}"/>
+                </Border>
+            </DockPanel>
+            <Image DockPanel.Dock="Left" Margin="5" Source="/Resources/ask.png"/>
+            <TextBlock Text="ВЫ УВЕРЕНЫ В СВОЕМ ВЫБОРЕ?" VerticalAlignment="Center"/>
         </DockPanel>
-        <Image DockPanel.Dock="Left" Margin="5" Source="/Resources/ask.png"/>
-        <TextBlock Text="ВЫ УВЕРЕНЫ В СВОЕМ ВЫБОРЕ?" VerticalAlignment="Center"/>
-    </DockPanel>
+    </Border>
 </Window>

@@ -178,9 +178,9 @@
     <Resource Include="Resources\creator3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\dificulLevel1.png" />
-    <Resource Include="Resources\dificultLevel2.png" />
-    <Resource Include="Resources\dificultLevel3.png" />
+    <Resource Include="Resources\difficulLevel3.png" />
+    <Resource Include="Resources\difficultLevel2.png" />
+    <Resource Include="Resources\difficultLevel1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ask.png" />

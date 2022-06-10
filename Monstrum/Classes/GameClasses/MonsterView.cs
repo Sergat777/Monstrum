@@ -16,10 +16,14 @@ namespace Monstrum.Classes.GameClasses
         {
             Background = new SolidColorBrush(Color.FromRgb(245, 197, 154)),
             Orientation = Orientation.Horizontal,
-            Margin = new Thickness(5),
+            Margin = new Thickness(5)
         };
         private ProgressBar _healthBar = new ProgressBar();
-        private TextBlock _healthCounter = new TextBlock();
+        private TextBlock _healthCounter = new TextBlock()
+        {
+            FontSize = 32,
+            VerticalAlignment = VerticalAlignment.Center
+        };
         private Image _image = new Image()
         {
             Stretch = Stretch.Fill,

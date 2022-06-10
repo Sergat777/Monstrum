@@ -12,7 +12,7 @@ namespace Monstrum.Classes
     {
         public static MainWindow AppWindow { get; set; }
 
-
+        public static Grid DarkScreen { get; set; }
         public static Frame MainAppFrame { get; set; }
     }
 }

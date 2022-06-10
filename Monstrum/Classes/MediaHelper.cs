@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Monstrum.Classes
 {
@@ -29,24 +31,28 @@ namespace Monstrum.Classes
         public static string BossesPath = ImagesPath + "Bosses\\";
         public static string MonstersPath = ImagesPath + "Monsters\\";
 
-        private static SoundPlayer currentMusic = new SoundPlayer();
+        private static MediaPlayer _currentMusic = new MediaPlayer();
+
+        private static DispatcherTimer _timerDarkScreen = new DispatcherTimer()
+                                                            { Interval = TimeSpan.FromMilliseconds(31.25) };
+        private static double _opacityDarkScreen;
+        private static bool _opasityGrow;
+        private static Page _nextPage;
+        private static string _nextMusic;
 
         public static void StartWork()
         {
             SetBackground("field");
             SetGameMusic("beginMusic");
 
+            _currentMusic.MediaEnded += MusicFinish;
+            _timerDarkScreen.Tick += ChangeDark;
+
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
             string text = reader.ReadToEnd();
             reader.Close();
 
             plot = text.Split('|');
-        }
-
-        public static void PlayAudio(string soundName)
-        {
-           (new SoundPlayer(SoundsPath + soundName + ".wav")).PlaySync();
-           PlayMusic();
         }
 
         public static void SetMonsterImage(Image image, string monsterName)
@@ -62,16 +68,60 @@ namespace Monstrum.Classes
             };
         }
 
-        public static void SetGameMusic(string musicName)
+        public static void GoNewScreen(Page nextPage, string soundName = null)
         {
-            currentMusic.Stop();
-            currentMusic.SoundLocation = SoundsPath + musicName + ".wav";
-            PlayMusic();
+            if (soundName != null)
+                PlayAudio(soundName);
+
+            _opacityDarkScreen = 0;
+            _opasityGrow = true;
+            _nextPage = nextPage;
+            _currentMusic.Volume = 0.25;
+            ControllerManager.DarkScreen.Visibility = Visibility.Visible;
+            _timerDarkScreen.Start();
         }
 
-        private static void PlayMusic()
+        public static void ChangeDark(object sender, EventArgs e)
         {
-            currentMusic.PlayLooping();
+            if (ControllerManager.DarkScreen.Opacity == 1)
+            {
+                _opasityGrow = false;
+                ControllerManager.MainAppFrame.Navigate(_nextPage);
+            }
+
+            if (_opasityGrow)
+                _opacityDarkScreen += 0.00390625;
+            else
+                _opacityDarkScreen -= 0.00390625;
+
+            ControllerManager.DarkScreen.Opacity = _opacityDarkScreen;
+
+            if (_opacityDarkScreen == 0)
+            {
+                _currentMusic.Volume = 0.25;
+                ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+                _timerDarkScreen.Stop();
+            }
+        }
+
+        private static void MusicFinish(object sender, EventArgs e)
+        {
+            _currentMusic.Position = TimeSpan.Zero;
+            _currentMusic.Play();
+        }
+
+        public static void PlayAudio(string soundName)
+        {
+            MediaPlayer player = new MediaPlayer();
+            player.Open(new Uri(SoundsPath + soundName + ".wav"));
+            player.Play();
+        }
+
+        public static void SetGameMusic(string musicName)
+        {
+            _currentMusic.Stop();
+            _currentMusic.Open(new Uri(SoundsPath + musicName + ".wav"));
+            _currentMusic.Play();
         }
 
         public static string GetStory(byte chapter)

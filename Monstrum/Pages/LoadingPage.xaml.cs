@@ -29,9 +29,13 @@ namespace Monstrum.Pages
         public LoadingPage()
         {
             InitializeComponent();
+            currentStory = Classes.MediaHelper.GetStory(Classes.GameSetter.Chapter);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
             Classes.MediaHelper.SetGameMusic("loadingMusic");
             Classes.MediaHelper.SetBackground("1");
-            currentStory = Classes.MediaHelper.GetStory(Classes.GameSetter.Chapter);
             txtHeader.Text = "CHAPTER" + Classes.GameSetter.Chapter;
             typingTimer.Tick += Type;
             typingTimer.Start();
@@ -39,21 +43,27 @@ namespace Monstrum.Pages
 
         public void Type(object sender, EventArgs e)
         {
-            if (letterIndex != currentStory.Length)
+            if (Classes.ControllerManager.DarkScreen.Visibility == Visibility.Collapsed)
             {
-                if (currentStory[letterIndex] == '\\')
-                    txtStory.Text += "\n";
-                else
-                    txtStory.Text += currentStory[letterIndex];
+                if (letterIndex != currentStory.Length)
+                {
+                    if (currentStory[letterIndex] == '\\' && currentStory[letterIndex + 1] == 'n')
+                    {
+                        txtStory.Text += "\n";
+                        letterIndex++;
+                    }
+                    else
+                        txtStory.Text += currentStory[letterIndex];
 
-                letterIndex++;
-            }
-            else
-            {
-                typingTimer.Stop();
-                Thread.Sleep(2000);
-                imgLoad.Visibility = Visibility.Collapsed;
-                btStart.Visibility = Visibility.Visible;
+                    letterIndex++;
+                }
+                else
+                {
+                    typingTimer.Stop();
+                    Thread.Sleep(2000);
+                    imgLoad.Visibility = Visibility.Collapsed;
+                    btStart.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -61,7 +71,24 @@ namespace Monstrum.Pages
         {
             Classes.MediaHelper.PlayAudio("winSound");
             Classes.ControllerManager.MainAppFrame.Navigate(new GeneralGamePlayPage());
-            Classes.MediaHelper.SetGameMusic("standartMusic");
+        }
+
+        private void Border_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            typingTimer.Stop();
+            txtStory.Text = "";
+            for (int i = 0; i < currentStory.Length; i++)
+            {
+                if (currentStory[i] == '\\' && currentStory[i + 1] == 'n')
+                {
+                    txtStory.Text += "\n";
+                    i++;
+                }
+                else
+                    txtStory.Text += currentStory[i];
+            }
+            imgLoad.Visibility = Visibility.Collapsed;
+            btStart.Visibility = Visibility.Visible;
         }
     }
 }

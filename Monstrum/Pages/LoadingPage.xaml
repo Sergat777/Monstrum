@@ -7,9 +7,9 @@
       xmlns:local="clr-namespace:Monstrum.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoadingPage">
+      Title="LoadingPage" Loaded="Page_Loaded">
 
-    <Border Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Border Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseWheel="Border_MouseWheel">
         <DockPanel>
             <DockPanel DockPanel.Dock="Bottom">
                 <Image x:Name="imgLoad" gif:ImageBehavior.AnimatedSource="/Resources/loading.gif"

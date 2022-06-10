@@ -12,15 +12,15 @@
         <Border x:Name="btPlay" Style="{StaticResource roundButton}" MouseDown="btPlay_MouseDown" Width="400">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Image Source="/Resources/creator2.png" Margin="10" Height="50"/>
-                <TextBlock Text="PLAY" Style="{StaticResource txtButton}"/>
+                <TextBlock Text="ИГРАТЬ" Style="{StaticResource txtButton}"/>
                 <Image Source="/Resources/creator3.png" Margin="10" Height="50"/>
             </StackPanel>
         </Border>
         <Border x:Name="btCreator" Style="{StaticResource roundButton}" MouseDown="btCreator_MouseDown" Width="400">
-            <TextBlock Text="CREATOR" Style="{StaticResource txtButton}"/>
+            <TextBlock Text="СОЗДАТЕЛЬ" Style="{StaticResource txtButton}"/>
         </Border>
         <Border x:Name="btClose" Style="{StaticResource roundButton}" MouseDown="btClose_MouseDown" Width="400">
-            <TextBlock Text="EXIT" Style="{StaticResource txtButton}"/>
+            <TextBlock Text="ВЫХОД" Style="{StaticResource txtButton}"/>
         </Border>
     </StackPanel>
 </Page>

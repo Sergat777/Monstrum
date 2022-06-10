@@ -15,20 +15,20 @@
             <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                 <Border x:Name="pnlEasy" MouseDown="pnlEasy_MouseDown" Width="400" Style="{StaticResource roundButton}">
                     <StackPanel>
-                        <Image Source="/Resources/dificulLevel1.png" Height="100" Margin="10"/>
-                        <TextBlock Text="EASY" Style="{StaticResource txtButton}"/>
+                        <Image Source="/Resources/difficulLevel3.png" Height="100" Margin="10"/>
+                        <TextBlock Text="ЛЕГКИЙ" Style="{StaticResource txtButton}"/>
                     </StackPanel>
                 </Border>
                 <Border x:Name="pnlMedium" MouseDown="pnlMedium_MouseDown" Width="400" Style="{StaticResource roundButton}">
                     <StackPanel>
-                        <Image Source="/Resources/dificultLevel2.png" Height="100" Margin="10"/>
-                        <TextBlock Text="MEDIUM" Style="{StaticResource txtButton}"/>
+                        <Image Source="/Resources/difficultLevel2.png" Height="100" Margin="10"/>
+                        <TextBlock Text="СРЕДНИЙ" Style="{StaticResource txtButton}"/>
                     </StackPanel>
                 </Border>
                 <Border x:Name="pnlHard" MouseDown="pnlHard_MouseDown" Width="400" Style="{StaticResource roundButton}">
                     <StackPanel>
-                        <Image Source="/Resources/dificultLevel3.png" Height="100" Margin="10"/>
-                        <TextBlock Text="HARD" Style="{StaticResource txtButton}"/>
+                        <Image Source="/Resources/difficultLevel1.png" Height="100" Margin="10"/>
+                        <TextBlock Text="СЛОЖНЫЙ" Style="{StaticResource txtButton}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
