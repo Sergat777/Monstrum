@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monstrum.Windows"
         mc:Ignorable="d"
-        Title="MONSTRUM" Height="500" Width="650" ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen" Icon="/Resources/logo.ico" Background="{StaticResource paleYellow}">
+        Title="MONSTRUM" Style="{StaticResource modalWindow}" WindowStartupLocation="CenterScreen">
     <DockPanel Margin="20">
         <DockPanel DockPanel.Dock="Bottom">
             <Border x:Name="btYes" Style="{StaticResource roundButton}" HorizontalAlignment="Left" MouseDown="btYes_MouseDown">

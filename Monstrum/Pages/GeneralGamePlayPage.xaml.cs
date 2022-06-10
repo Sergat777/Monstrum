@@ -23,13 +23,13 @@ namespace Monstrum.Pages
     /// </summary>
     public partial class GeneralGamePlayPage : Page
     {
-        DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+        DispatcherTimer timerOfTurns = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
 
         public GeneralGamePlayPage()
         {
             InitializeComponent();
 
-            timer.Tick += Step;
+            timerOfTurns.Tick += PlayerTurn;
 
             barEnemies.Maximum = GameSetter.EnemiesCounter;
             txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
@@ -45,15 +45,22 @@ namespace Monstrum.Pages
 
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ControllerManager.MainAppFrame.IsEnabled = false;
-            pnlAction.Opacity = 0.5;
             GameSetter.Hero.Attack(GameSetter.Enemy);
-            timer.Start();
+            timerOfTurns.Start();
+            BlockUnBlockFrame();
+            pnlAction.Opacity = 0.5;
+
             if (GameSetter.Enemy.IsDead())
             {
                 GameSetter.KillCounter++;
                 barEnemies.Value = GameSetter.KillCounter;
                 txtEnemies.Text = GameSetter.KillCounter + "/" + GameSetter.EnemiesCounter;
+            }
+            else
+            {
+                GameSetter.Enemy.Attack(GameSetter.Hero);
+                if (GameSetter.Hero.IsDead())
+                    (new Windows.LoseWindow()).ShowDialog();
             }
         }
 
@@ -71,7 +78,7 @@ namespace Monstrum.Pages
         {
         }
 
-        private void Step(object sender, EventArgs e)
+        private void PlayerTurn(object sender, EventArgs e)
         {
             if (GameSetter.Enemy.IsDead())
             {
@@ -79,9 +86,14 @@ namespace Monstrum.Pages
                 GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
                 gridEnemy.Children.Add(GameSetter.Enemy);
             }
-            timer.Stop();
-            ControllerManager.MainAppFrame.IsEnabled = true;
+            timerOfTurns.Stop();
+            BlockUnBlockFrame();
             pnlAction.Opacity = 1;
+        }
+
+        private void BlockUnBlockFrame()
+        {
+            ControllerManager.MainAppFrame.IsEnabled = !ControllerManager.MainAppFrame.IsEnabled;
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Monstrum.Pages
         public MainMenuPage()
         {
             InitializeComponent();
+
+            Classes.MediaHelper.StartWork();
         }
 
         private void btPlay_MouseDown(object sender, MouseButtonEventArgs e)

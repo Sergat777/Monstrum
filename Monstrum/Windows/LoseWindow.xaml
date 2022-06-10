@@ -1,0 +1,27 @@
+﻿<Window x:Class="Monstrum.Windows.LoseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Monstrum.Windows"
+        mc:Ignorable="d"
+        Title="MONSTRUM" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource modalWindow}" Background="{StaticResource paleGray}">
+    <DockPanel Margin="20">
+        <DockPanel DockPanel.Dock="Bottom">
+            <Border x:Name="btMenu" Style="{StaticResource roundButton}"
+                    HorizontalAlignment="Left" MouseDown="btMenu_MouseDown">
+                <TextBlock Text="MENU" Style="{StaticResource txtButton}"/>
+            </Border>
+            <Border x:Name="btExit" Style="{StaticResource roundButton}"
+                    HorizontalAlignment="Right" MouseDown="btExit_MouseDown">
+                <TextBlock Text="EXIT" Style="{StaticResource txtButton}"/>
+            </Border>
+        </DockPanel>
+        <StackPanel>
+            <Image Height="220" Source="/Resources/lose.png"/>
+            <TextBlock Text="ВПЕРЕДИ ЕЩЕ ТАК МНОГО ПРИКЛЮЧЕНИЙ!&#10;НЕЛЬЗЯ СДАВАТЬСЯ!"
+                       Style="{StaticResource txtButton}" FontSize="24"/>
+        </StackPanel>
+    </DockPanel>
+</Window>
