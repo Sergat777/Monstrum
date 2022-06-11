@@ -11,7 +11,7 @@ using System.Windows.Threading;
 
 namespace Monstrum.Classes.GameClasses
 {
-    internal class MonsterView : StackPanel
+    internal class MonsterView : DockPanel
     {
         private Monster _monster;
         private Random _rndm = new Random();
@@ -37,12 +37,10 @@ namespace Monstrum.Classes.GameClasses
         };
         private Grid _imagePanel = new Grid()
         {
-            Height = 400,
-            Width = 400
+            Margin = new Thickness(30)
         };
         private Image _imageMonster = new Image()
         {
-            Stretch = Stretch.Fill,
             Margin = new Thickness(5)
         };
         private Grid _damageBlock = new Grid()
@@ -84,8 +82,6 @@ namespace Monstrum.Classes.GameClasses
         {
             // set properties of Main View
             _monster = monster;
-            HorizontalAlignment = HorizontalAlignment.Center;
-            VerticalAlignment = VerticalAlignment.Center;
 
             timerTalk.Tick += ShutUp;
             timerHit.Tick += HideHit;
@@ -98,6 +94,7 @@ namespace Monstrum.Classes.GameClasses
             _healthPanel.Children.Add(_healthBar);
             _healthPanel.Children.Add(_healthCounter);
             Children.Add(_healthPanel);
+            SetDock(_healthPanel, Dock.Top);
 
             // add image panel
             _imagePanel.Children.Add(_imageMonster);
@@ -107,6 +104,7 @@ namespace Monstrum.Classes.GameClasses
             _imagePanel.Children.Add(_dialogBlock);
 
             Children.Add(_imagePanel);
+            SetDock(_imagePanel, Dock.Top);
         }
 
         public Monster GetMonster()
@@ -137,26 +135,15 @@ namespace Monstrum.Classes.GameClasses
         {
             string speach = "";
             if (IsDead())
-            {
                 speach += "bloodSpeach";
-                speach += _rndm.Next(1, 11);
-            }
             else if (IsEscaped())
-            {
                 speach += "escapeSpeach";
-                speach += _rndm.Next(1, 6);
-            }
             else if (IsAttacked())
-            {
                 speach += "simpleSpeach";
-                speach += _rndm.Next(1, 6);
-            }
             else
-            {
                 speach += "angrySpeach";
-                speach += _rndm.Next(1, 6);
-            }
 
+            speach += _rndm.Next(1, 11);
             speach = MediaHelper.GetSpeach(speach);
 
             return speach;

@@ -14,5 +14,6 @@ namespace Monstrum.Classes
 
         public static Grid DarkScreen { get; set; }
         public static Frame MainAppFrame { get; set; }
+        public static Frame TutorialFrame { get; set; }
     }
 }

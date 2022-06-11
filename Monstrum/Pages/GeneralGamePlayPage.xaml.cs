@@ -32,6 +32,9 @@ namespace Monstrum.Pages
             timerOfTurns.Tick += PlayerTurn;
 
             GameSetter.SetStandart();
+
+            if (GameSetter.Chapter == 1)
+                new Windows.TutorialWindow().ShowDialog();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -132,6 +135,11 @@ namespace Monstrum.Pages
         private void BlockUnBlockFrame()
         {
             ControllerManager.MainAppFrame.IsEnabled = !ControllerManager.MainAppFrame.IsEnabled;
+        }
+
+        private void btPause_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            new Windows.PauseWindow().ShowDialog();
         }
     }
 }

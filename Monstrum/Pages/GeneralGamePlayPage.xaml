@@ -52,7 +52,7 @@
             
         </Grid>
 
-        <Border Grid.Row="1" Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" Padding="5">
+        <Border Grid.Row="1" Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" Margin="5" Padding="5">
 
             <Grid>
 
@@ -72,10 +72,13 @@
                     </StackPanel>
                 </Border>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-                    <TextBlock Text="Задание: " Style="{StaticResource txtButton}" FontSize="28"/>
-                    <TextBlock x:Name="txtTask" Style="{StaticResource txtButton}" FontSize="28"/>
-                </StackPanel>
+                <Border x:Name="btPause" MouseDown="btPause_MouseDown"  Margin="5" Padding="5"
+                        Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image x:Name="imgPause" Source="/Resources/logo.png" Height="50" Width="50"/>
+                        <TextBlock Text="ПАУЗА" Style="{StaticResource txtButton}" FontSize="28"/>
+                    </StackPanel>
+                </Border>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2">
                     <TextBlock Text="ВРАГИ" Style="{StaticResource txtButton}" FontSize="34"/>

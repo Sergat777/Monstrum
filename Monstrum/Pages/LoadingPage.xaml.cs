@@ -48,7 +48,10 @@ namespace Monstrum.Pages
                 if (letterIndex != currentStory.Length)
                 {
                     if (currentStory[letterIndex] == '\\' && currentStory[letterIndex + 1] == 'n')
+                    {
                         txtStory.Text += "\n";
+                        letterIndex++;
+                    }
                     else
                         txtStory.Text += currentStory[letterIndex];
 

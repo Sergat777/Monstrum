@@ -10,7 +10,7 @@ namespace Monstrum.Classes
     {
         private static Random rndm = new Random();
 
-        public static byte DifficultLevel { get; set; } = 2;
+        public static byte DifficultLevel { get; set; } = 3;
         public static byte Chapter { get; set; } = 1;
         public static byte MonsterBottomIndex { get; set; } = 1;
         public static byte MonsterTopIndex { get; set; } = 7;
@@ -35,7 +35,7 @@ namespace Monstrum.Classes
         public static GameClasses.EquipmentView Shield { get; set; }
 
 
-        public static float FightsCounter { get; set; } = 8;
+        public static float FightsCounter { get; set; } = 0;
         public static float EnemiesCounter { get; set; } = 10;
         public static float KillsCounter { get; set; } = 0;
 
@@ -179,7 +179,7 @@ namespace Monstrum.Classes
 
         public static void SetStandart(int enemyNumber = 10)
         {
-            FightsCounter = 8;
+            FightsCounter = 0;
             EnemiesCounter = 10;
         }
     }

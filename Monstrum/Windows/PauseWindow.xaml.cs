@@ -28,7 +28,6 @@ namespace Monstrum.Windows
 
         private void btContinue_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DialogResult = false;
             Classes.ControllerManager.DarkScreen.Opacity = 0;
             Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
             Close();
@@ -38,7 +37,6 @@ namespace Monstrum.Windows
         {
             if ((bool)new QuestionWindow().ShowDialog())
             {
-                DialogResult = true;
                 Classes.ControllerManager.DarkScreen.Opacity = 0;
                 Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
                 Classes.ControllerManager.MainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
@@ -58,7 +56,6 @@ namespace Monstrum.Windows
         {
             if (e.Key == Key.Escape)
             {
-                DialogResult = false;
                 Classes.ControllerManager.DarkScreen.Opacity = 0;
                 Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
                 Close();

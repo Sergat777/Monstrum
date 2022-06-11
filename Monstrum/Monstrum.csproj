@@ -71,6 +71,12 @@
     <Compile Include="Pages\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TutorialPages\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage1.xaml.cs">
+      <DependentUpon>TtPage1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
     </Compile>
@@ -88,6 +94,9 @@
     </Compile>
     <Compile Include="Windows\StopInventoryWindow.xaml.cs">
       <DependentUpon>StopInventoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TutorialWindow.xaml.cs">
+      <DependentUpon>TutorialWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +133,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\TutorialPages\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\InventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\StopInventoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TutorialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\left.png" />
-    <Resource Include="Resources\right.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\creator2.png" />
@@ -237,6 +257,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\1.png" />
+    <Resource Include="Resources\10.png" />
+    <Resource Include="Resources\11.png" />
+    <Resource Include="Resources\12.png" />
+    <Resource Include="Resources\2.png" />
+    <Resource Include="Resources\3.png" />
+    <Resource Include="Resources\4.png" />
+    <Resource Include="Resources\5.png" />
+    <Resource Include="Resources\6.png" />
+    <Resource Include="Resources\7.png" />
+    <Resource Include="Resources\8.png" />
+    <Resource Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
