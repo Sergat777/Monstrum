@@ -119,8 +119,8 @@ namespace Monstrum.Windows
                 previousItem.GetEquipment().SetIsEquip(false);
                 GameSetter.InventoryList.Add(previousItem);
                 lvInventory.ItemsSource = GameSetter.InventoryList;
-                if ((int)previousItem.GetEquipmentStat() == 2)
-                    GameSetter.Hero.GetMonster().SetHealth(GameSetter.Hero.GetMonster().GetHealth() - previousItem.GetEquipmentStatValue());
+                //if ((int)previousItem.GetEquipmentStat() == 2)
+                //    GameSetter.Hero.GetMonster().SetHealth(GameSetter.Hero.GetMonster().GetHealth() - previousItem.GetEquipmentStatValue());
             }
 
 

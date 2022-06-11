@@ -10,7 +10,7 @@ namespace Monstrum.Classes
     {
         private static Random rndm = new Random();
 
-        public static byte DifficultLevel { get; set; } = 1;
+        public static byte DifficultLevel { get; set; } = 2;
         public static byte Chapter { get; set; } = 1;
         public static byte MonsterBottomIndex { get; set; } = 1;
         public static byte MonsterTopIndex { get; set; } = 7;
@@ -35,7 +35,7 @@ namespace Monstrum.Classes
         public static GameClasses.EquipmentView Shield { get; set; }
 
 
-        public static float FightsCounter { get; set; } = 0;
+        public static float FightsCounter { get; set; } = 8;
         public static float EnemiesCounter { get; set; } = 10;
         public static float KillsCounter { get; set; } = 0;
 
@@ -154,12 +154,14 @@ namespace Monstrum.Classes
                     health += Shield.GetEquipmentStatValue();
             }
 
+            // Update monster
+            GameClasses.Monster hero = Hero.GetMonster();
+
+            hero.SetHealth(HeroCurrentHealth - AdditionalHealth);
+
             AdditionalArmor = armor;
             AdditionalHealth = health;
             AdditionalDamage = damage;
-
-            // Update monster
-            GameClasses.Monster hero = Hero.GetMonster();
 
             hero.SetMaxHealth(HeroMaxHealth);
             hero.SetHealth(HeroCurrentHealth + AdditionalHealth);
@@ -170,13 +172,14 @@ namespace Monstrum.Classes
         public static void IncreaseFightsCounter()
         {
             FightsCounter++;
-            if (FightsCounter == EnemiesCounter)
-                ;
+            if (FightsCounter >= EnemiesCounter)
+                for (int i = 0; i < DifficultLevel; i++)
+                    new Windows.RewardWindow().ShowDialog();
         }
 
         public static void SetStandart(int enemyNumber = 10)
         {
-            FightsCounter = 0;
+            FightsCounter = 8;
             EnemiesCounter = 10;
         }
     }

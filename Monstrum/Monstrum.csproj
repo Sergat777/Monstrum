@@ -83,6 +83,9 @@
     <Compile Include="Windows\QuestionWindow.xaml.cs">
       <DependentUpon>QuestionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\RewardWindow.xaml.cs">
+      <DependentUpon>RewardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\StopInventoryWindow.xaml.cs">
       <DependentUpon>StopInventoryWindow.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\QuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RewardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
