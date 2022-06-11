@@ -18,7 +18,7 @@ namespace Monstrum.Classes
     static
         class MediaHelper
     {
-        public static string ResourcesPath = AppDomain.CurrentDomain.BaseDirectory;
+        public static string ResourcesPath = AppDomain.CurrentDomain.BaseDirectory + "Resources\\";
 
         public static string SoundsPath = ResourcesPath + "Sounds\\";
 
