@@ -9,17 +9,17 @@ using System.Windows.Media.Imaging;
 
 namespace Monstrum.Classes.GameClasses
 {
-    internal class EquipmentView : Image
+    internal class EquipmentView
     {
         private Equipment _equipment;
+        public string Source;
 
 
         public EquipmentView(Equipment equipment)
         {
             _equipment = equipment;
 
-            Source = new BitmapImage(new Uri(MediaHelper.AmunitionsPath + _equipment.GetName() + ".png"));
-            Stretch = Stretch.Fill;
+            Source = MediaHelper.AmunitionsPath + _equipment.GetName() + ".png");
         }
 
         public EquipmentTypes GetEquipmentType()
