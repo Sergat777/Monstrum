@@ -13,10 +13,14 @@ namespace Monstrum.Classes.GameClasses
 {
     internal class MonsterView : StackPanel
     {
-        private Random rndm = new Random();
-        private static ImageBrush dialogBackgroundImage = new ImageBrush()
+        private Random _rndm = new Random();
+        private static ImageBrush _dialogBackgroundImage = new ImageBrush()
         {
             ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "wordBG.png"))
+        };
+        private static ImageBrush _hitBackgroundImage = new ImageBrush()
+        {
+            ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "hitBG.png"))
         };
         private Monster _monster;
         private StackPanel _healthPanel = new StackPanel()
@@ -36,10 +40,27 @@ namespace Monstrum.Classes.GameClasses
             Height = 400,
             Width = 400
         };
-        private Image _image = new Image()
+        private Image _imageMonster = new Image()
         {
             Stretch = Stretch.Fill,
             Margin = new Thickness(5)
+        };
+        private Grid _damageBlock = new Grid()
+        {
+            Visibility = Visibility.Collapsed,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Top,
+            Height = 150,
+            Width = 150,
+            Margin = new Thickness(5),
+            Background = _hitBackgroundImage
+        };
+        private TextBlock _hitBlock = new TextBlock()
+        {
+            FontSize = 20,
+            Foreground = Brushes.Black,
+            FontWeight = FontWeights.Black,
+            VerticalAlignment = VerticalAlignment.Center
         };
         private Grid _dialogBlock = new Grid()
         {
@@ -47,7 +68,7 @@ namespace Monstrum.Classes.GameClasses
             VerticalAlignment = VerticalAlignment.Bottom,
             Height = 170,
             Width = 200,
-            Background = dialogBackgroundImage,
+            Background = _dialogBackgroundImage,
             Visibility = Visibility.Collapsed
         };
         private TextBlock _speachBlock = new TextBlock()
@@ -57,6 +78,7 @@ namespace Monstrum.Classes.GameClasses
             VerticalAlignment = VerticalAlignment.Center
         };
         private DispatcherTimer timerTalk = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
+        private DispatcherTimer timerHit = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.65) };
 
         public MonsterView(Monster monster)
         {
@@ -66,6 +88,7 @@ namespace Monstrum.Classes.GameClasses
             VerticalAlignment = VerticalAlignment.Center;
 
             timerTalk.Tick += ShutUp;
+            timerHit.Tick += HideHit;
 
             // Update controls
             UpdateHealthPanel();
@@ -77,7 +100,9 @@ namespace Monstrum.Classes.GameClasses
             Children.Add(_healthPanel);
 
             // add image panel
-            _imagePanel.Children.Add(_image);
+            _imagePanel.Children.Add(_imageMonster);
+            _damageBlock.Children.Add(_hitBlock);
+            _imagePanel.Children.Add(_damageBlock);
             _dialogBlock.Children.Add(_speachBlock);
             _imagePanel.Children.Add(_dialogBlock);
 
@@ -111,21 +136,25 @@ namespace Monstrum.Classes.GameClasses
         public string GenerateSpeach()
         {
             string speach = "";
-
             if (IsDead())
             {
                 speach += "bloodSpeach";
-                speach += rndm.Next(1, 11);
+                speach += _rndm.Next(1, 11);
             }
             else if (IsEscaped())
             {
                 speach += "escapeSpeach";
-                speach += rndm.Next(1, 6);
+                speach += _rndm.Next(1, 6);
+            }
+            else if (IsAttacked())
+            {
+                speach += "simpleSpeach";
+                speach += _rndm.Next(1, 6);
             }
             else
             {
                 speach += "angrySpeach";
-                speach += rndm.Next(1, 6);
+                speach += _rndm.Next(1, 6);
             }
 
             speach = MediaHelper.GetSpeach(speach);
@@ -140,6 +169,20 @@ namespace Monstrum.Classes.GameClasses
             timerTalk.Stop();
         }
 
+        public void ShowHit(float damage)
+        {
+            _damageBlock.Visibility = Visibility.Visible;
+            _hitBlock.Text = damage.ToString();
+            timerHit.Start();
+        }
+
+        public void HideHit(object sender, EventArgs e)
+        {
+            _damageBlock.Visibility = Visibility.Collapsed;
+            _hitBlock.Text = null;
+            timerHit.Stop();
+        }
+
         public void Block()
         {
             _monster.OnBlock();
@@ -152,9 +195,24 @@ namespace Monstrum.Classes.GameClasses
 
         public void ApplyDamage(float damage)
         {
+            bool wasBlock = _monster.GetIsBlock();
             _monster.ApplyDamage(damage);
+            if (IsAttacked())
+                if (wasBlock)
+                    if (_monster.GetArmor() > 0)
+                        ShowHit(damage - _monster.GetArmor() * 2);
+                    else
+                        ShowHit(damage - 1);
+                else
+                    ShowHit(damage - _monster.GetArmor());
+
             UpdateHealthPanel();
             UpdateImage();
+        }
+
+        public bool IsAttacked()
+        {
+            return _monster.GetIsAttacked();
         }
 
         public bool IsEscaped()
@@ -169,7 +227,7 @@ namespace Monstrum.Classes.GameClasses
 
         public void UpdateImage()
         {
-            MediaHelper.SetMonsterImage(_image, _monster.GetName());
+            MediaHelper.SetMonsterImage(_imageMonster, _monster.GetName());
         }
 
         public void UpdateHealthPanel()

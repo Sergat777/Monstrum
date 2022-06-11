@@ -23,8 +23,8 @@ namespace Monstrum.Classes
         public static string SoundsPath = ResourcesPath + "Sounds\\";
 
         public static string FilesPath = ResourcesPath + "Files\\";
-        private static string[] _plot = new string[8];
-        private static Dictionary<string, string> _speaches = new Dictionary<string, string>();
+        private static string[] _plot;
+        private static Dictionary<string, string> _speaches;
 
         public static string ImagesPath = ResourcesPath + "Images\\";
         public static string AmunitionsPath = ImagesPath + "Amunitions\\";
@@ -43,6 +43,9 @@ namespace Monstrum.Classes
             _currentMusic.MediaEnded += MusicFinish;
             _timerDarkScreen.Tick += ChangeDark;
             _typingTimer.Tick += Type;
+
+            _plot = new string[8];
+            _speaches = new Dictionary<string, string>();
 
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
             _plot = reader.ReadToEnd().Split('|');

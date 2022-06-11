@@ -17,6 +17,7 @@ namespace Monstrum.Classes.GameClasses
         private float _armor;
         private bool _isBlock = false;
         private bool _isEscaped = false;
+        private bool _isAttacked = false;
 
         public Monster(string name, float maxHealth, float damage, float armor = 0)
         {
@@ -53,9 +54,19 @@ namespace Monstrum.Classes.GameClasses
             return _armor;
         }
 
+        public bool GetIsBlock()
+        {
+            return _isBlock;
+        }
+
         public bool GetIsEscaped()
         {
             return _isEscaped;
+        }
+
+        public bool GetIsAttacked()
+        {
+            return _isAttacked;
         }
 
 
@@ -82,6 +93,8 @@ namespace Monstrum.Classes.GameClasses
                 _name = "byebye";
                 _isEscaped = true;
             }
+            else
+                _isAttacked = false;
 
             return potentionalDamage >= _health;
         }
@@ -111,13 +124,18 @@ namespace Monstrum.Classes.GameClasses
         public void ApplyDamage(float incommingDamage)
         {
             if (incommingDamage > _armor)
+            {
                 if (_health - incommingDamage <= 0)
                     _health = 0;
                 else
                     _health -= incommingDamage - _armor;
 
-            OffBlock();
+                _isAttacked = true;
+            }
+            else
+                _isAttacked = false;
 
+            OffBlock();
             CheckHealth();
         }
 
