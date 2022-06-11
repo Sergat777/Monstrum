@@ -59,15 +59,31 @@
                 </StackPanel>
 
                 <DockPanel DockPanel.Dock="Bottom" Height="150">
-                    <Border x:Name="btEquip" Style="{StaticResource roundButton}" DockPanel.Dock="Bottom"
+                    <DockPanel DockPanel.Dock="Bottom">
+                        <Border x:Name="btEquip" Style="{StaticResource roundButton}" DockPanel.Dock="Right"
                             Padding="5" HorizontalAlignment="Right" BorderThickness="5">
-                        <TextBlock Text="ЭКИПИРОВАТЬ" Style="{StaticResource txtButton}" FontSize="24"/>
-                    </Border>
+                            <TextBlock Text="ЭКИПИРОВАТЬ" Style="{StaticResource txtButton}" FontSize="24"/>
+                        </Border>
+                        <TextBlock x:Name="txtStatInfluence"/>
+                    </DockPanel>
                     <TextBlock x:Name="txtDescription" FontSize="24"/>
                 </DockPanel>
 
-                <ListView x:Name="lvInventory" Background="{StaticResource paleYellow}">
-                    
+                <ListView x:Name="lvInventory" Background="{StaticResource paleYellow}" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="item" MouseDown="item_MouseDown" Height="100" Width="100"
+                                  Margin="5" Background="{StaticResource paleGray}">
+                                <Image Source="{Binding ImageSource}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
                 
             </DockPanel>

@@ -12,19 +12,24 @@ namespace Monstrum.Classes.GameClasses
     internal class EquipmentView
     {
         private Equipment _equipment;
-        public string Source;
+        public string ImageSource { get; set; }
 
 
         public EquipmentView(Equipment equipment)
         {
             _equipment = equipment;
 
-            Source = MediaHelper.AmunitionsPath + _equipment.GetName() + ".png");
+            ImageSource = MediaHelper.AmunitionsPath + _equipment.GetName() + ".png";
         }
 
         public EquipmentTypes GetEquipmentType()
         {
             return _equipment.GetItemType();
+        }
+
+        public float GetEquipmentStatValue()
+        {
+            return (float)Math.Round(_equipment.GetValueOfStat(), 1);
         }
 
         public Stats GetEquipmentStat()

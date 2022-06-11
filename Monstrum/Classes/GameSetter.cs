@@ -49,15 +49,15 @@ namespace Monstrum.Classes
 
             if (type == 2)    // armor 7
                 if (Chapter < 4)
-                    coolIndex = rndm.Next(1, 5);
+                    coolIndex = rndm.Next(1, 3);
                 else
                     coolIndex = rndm.Next(3, 8);
 
             if (type == 1 || type == 5) // sword & hat 5
-                if (Chapter < 4)
-                    coolIndex = rndm.Next(1, 3);
+                if (Chapter < 3)
+                    coolIndex = rndm.Next(1, 2);
                 else
-                    coolIndex = rndm.Next(3, 6);
+                    coolIndex = rndm.Next(2, 6);
 
             if (type == 3) // shield 3
                 coolIndex = rndm.Next(1, 4);
@@ -73,7 +73,7 @@ namespace Monstrum.Classes
             if (type == 2 || type == 3 || type == 5)
             {
                 stat = (GameClasses.Stats)rndm.Next(1, 3);
-                value = 20F / type * Chapter * coolIndex;
+                value = 5F / type * Chapter * coolIndex;
             }
             else
             {

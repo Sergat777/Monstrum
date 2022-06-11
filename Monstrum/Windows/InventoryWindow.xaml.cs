@@ -31,6 +31,14 @@ namespace Monstrum.Windows
             txtArmor.Text = GameSetter.HeroArmor.ToString();
             ControllerManager.DarkScreen.Opacity = 0.8;
             ControllerManager.DarkScreen.Visibility = Visibility.Visible;
+            List<Classes.GameClasses.EquipmentView> views = new List<Classes.GameClasses.EquipmentView>();
+            views.Add(new Classes.GameClasses.EquipmentView(GameSetter.GenerateEquipment()));
+            views.Add(new Classes.GameClasses.EquipmentView(GameSetter.GenerateEquipment()));
+            views.Add(new Classes.GameClasses.EquipmentView(GameSetter.GenerateEquipment()));
+            views.Add(new Classes.GameClasses.EquipmentView(GameSetter.GenerateEquipment()));
+            views.Add(new Classes.GameClasses.EquipmentView(GameSetter.GenerateEquipment()));
+            views.Add(new Classes.GameClasses.EquipmentView(GameSetter.GenerateEquipment()));
+            lvInventory.ItemsSource = views;
         }
 
         private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,6 +54,22 @@ namespace Monstrum.Windows
                 Close();
             ControllerManager.DarkScreen.Opacity = 0;
             ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+        }
+
+        private void item_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Classes.GameClasses.EquipmentView selectedItem = (sender as Grid).DataContext as Classes.GameClasses.EquipmentView;
+            txtDescription.Text = selectedItem.GetEquipmentDescription();
+
+            int stat = (int)selectedItem.GetEquipmentStat();
+            if (stat == 1)
+                txtStatInfluence.Text = "БРОНЯ +";
+            if (stat == 2)
+                txtStatInfluence.Text = "ЗДОРОВЬЕ +";
+            if (stat == 3)
+                txtStatInfluence.Text = "УРОН +";
+
+            txtStatInfluence.Text += selectedItem.GetEquipmentStatValue();
         }
     }
 }
