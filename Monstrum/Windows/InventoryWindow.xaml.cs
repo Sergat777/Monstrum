@@ -35,9 +35,10 @@ namespace Monstrum.Windows
 
         private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
-            ControllerManager.DarkScreen.Opacity = 0;
-            ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+            //Close();
+            //ControllerManager.DarkScreen.Opacity = 0;
+            //ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

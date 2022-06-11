@@ -25,6 +25,7 @@ namespace Monstrum.Classes
         public static string FilesPath = ResourcesPath + "Files\\";
         private static string[] _plot;
         private static Dictionary<string, string> _speaches;
+        private static Dictionary<string, string> _itemsDescription;
 
         public static string ImagesPath = ResourcesPath + "Images\\";
         public static string AmunitionsPath = ImagesPath + "Amunitions\\";
@@ -46,11 +47,14 @@ namespace Monstrum.Classes
 
             _plot = new string[8];
             _speaches = new Dictionary<string, string>();
+            _itemsDescription = new Dictionary<string, string>();
 
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
             _plot = reader.ReadToEnd().Split('|');
             reader = new StreamReader(FilesPath + "Speaches.txt");
             string[] speachesText = reader.ReadToEnd().Split('|');
+            reader = new StreamReader(FilesPath + "Amunitions.txt");
+            string[] descriptions = reader.ReadToEnd().Split('|');
 
 
             reader.Close();
@@ -60,7 +64,12 @@ namespace Monstrum.Classes
                 string[] newSpeach = speach.Split('_');
                 _speaches.Add(newSpeach[0], newSpeach[1]);
             }
-            ;
+
+            foreach (string itemInf in descriptions)
+            {
+                string[] newItem = itemInf.Split('_');
+                _itemsDescription.Add(newItem[0], newItem[1]);
+            }
         }
 
         public static void SetMonsterImage(Image image, string monsterName)
@@ -181,6 +190,11 @@ namespace Monstrum.Classes
         public static string GetSpeach(string speachName)
         {
             return _speaches[speachName];
+        }
+
+        public static string GetItemDescription(string itemName)
+        {
+            return _itemsDescription[itemName];
         }
     }
 }

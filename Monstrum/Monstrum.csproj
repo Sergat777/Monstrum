@@ -61,6 +61,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\GameClasses\Equipment.cs" />
+    <Compile Include="Classes\GameClasses\EquipmentView.cs" />
     <Compile Include="Classes\GameClasses\Monster.cs" />
     <Compile Include="Classes\GameClasses\MonsterView.cs" />
     <Compile Include="Pages\GeneralGamePlayPage.xaml.cs">

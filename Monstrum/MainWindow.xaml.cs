@@ -32,6 +32,8 @@ namespace Monstrum
 
             MediaHelper.StartWork();
 
+            GameSetter.GenerateEquipment();
+
             mainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
         }
 

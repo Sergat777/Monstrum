@@ -13,6 +13,7 @@ namespace Monstrum.Classes.GameClasses
 {
     internal class MonsterView : StackPanel
     {
+        private Monster _monster;
         private Random _rndm = new Random();
         private static ImageBrush _dialogBackgroundImage = new ImageBrush()
         {
@@ -22,7 +23,6 @@ namespace Monstrum.Classes.GameClasses
         {
             ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "hitBG.png"))
         };
-        private Monster _monster;
         private StackPanel _healthPanel = new StackPanel()
         {
             Background = new SolidColorBrush(Color.FromRgb(245, 197, 154)),
