@@ -29,11 +29,23 @@ namespace Monstrum.Windows
             txtHealth.Text = GameSetter.Hero.GetMonster().GetHealth().ToString() + "/" + GameSetter.HeroHealth;
             txtDamage.Text = GameSetter.HeroDamage.ToString();
             txtArmor.Text = GameSetter.HeroArmor.ToString();
+            ControllerManager.DarkScreen.Opacity = 0.8;
+            ControllerManager.DarkScreen.Visibility = Visibility.Visible;
         }
 
         private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
+            ControllerManager.DarkScreen.Opacity = 0;
+            ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+                Close();
+            ControllerManager.DarkScreen.Opacity = 0;
+            ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
         }
     }
 }

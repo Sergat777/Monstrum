@@ -34,5 +34,13 @@ namespace Monstrum
 
             mainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                new Windows.PauseWindow().ShowDialog();
+            else if (e.Key == Key.Tab)
+                new Windows.InventoryWindow().ShowDialog();
+        }
     }
 }

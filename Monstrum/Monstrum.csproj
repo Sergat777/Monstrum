@@ -75,6 +75,9 @@
     <Compile Include="Windows\LoseWindow.xaml.cs">
       <DependentUpon>LoseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PauseWindow.xaml.cs">
+      <DependentUpon>PauseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\QuestionWindow.xaml.cs">
       <DependentUpon>QuestionWindow.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\LoseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PauseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

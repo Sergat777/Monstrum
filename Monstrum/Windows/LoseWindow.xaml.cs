@@ -23,11 +23,15 @@ namespace Monstrum.Windows
         {
             InitializeComponent();
             Classes.MediaHelper.PlayAudio("loseSound");
+            Classes.ControllerManager.DarkScreen.Opacity = 0.8;
+            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
         }
 
         private void btMenu_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DialogResult = true;
+            Classes.ControllerManager.DarkScreen.Opacity = 0;
+            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
             Classes.ControllerManager.MainAppFrame.Navigate(new Pages.MainMenuPage());
         }
 
@@ -40,6 +44,8 @@ namespace Monstrum.Windows
         private void btRepeat_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DialogResult = true;
+            Classes.ControllerManager.DarkScreen.Opacity = 0;
+            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
             Classes.ControllerManager.MainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
         }
     }
