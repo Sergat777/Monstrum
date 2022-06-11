@@ -23,7 +23,7 @@ namespace Monstrum.Pages
     /// </summary>
     public partial class GeneralGamePlayPage : Page
     {
-        DispatcherTimer timerOfTurns = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1.25) };
+        DispatcherTimer timerOfTurns = new DispatcherTimer();
 
         public GeneralGamePlayPage()
         {
@@ -56,14 +56,20 @@ namespace Monstrum.Pages
             MediaHelper.PlayAudio("splashSound");
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
-            timerOfTurns.Start();
+            timerOfTurns.Interval = TimeSpan.FromSeconds(3.5);
             if (!GameSetter.Enemy.IsDead())
             {
+                timerOfTurns.Interval = TimeSpan.FromSeconds(1.25);
                 GameSetter.Enemy.Attack(GameSetter.Hero);
                 MediaHelper.PlayAudio("damageSound");
                 if (GameSetter.Hero.IsDead())
                     (new Windows.LoseWindow()).ShowDialog();
             }
+            else
+                timerOfTurns.Interval = TimeSpan.FromSeconds(3.5);
+
+            GameSetter.Enemy.Speak();
+            timerOfTurns.Start();
         }
 
         private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)
@@ -72,6 +78,7 @@ namespace Monstrum.Pages
             MediaHelper.PlayAudio("shieldSound");
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
+            timerOfTurns.Interval = TimeSpan.FromSeconds(1.25);
             timerOfTurns.Start();
             if (!GameSetter.Enemy.IsDead())
             {
@@ -84,7 +91,21 @@ namespace Monstrum.Pages
 
         private void btSpare_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            BlockUnBlockFrame();
+            pnlAction.Opacity = 0.5;
+            if (!GameSetter.Enemy.TryRun(GameSetter.HeroDamage))
+            {
+                timerOfTurns.Interval = TimeSpan.FromSeconds(1);
+                GameSetter.Enemy.Attack(GameSetter.Hero);
+                MediaHelper.PlayAudio("damageSound");
+                if (GameSetter.Hero.IsDead())
+                    (new Windows.LoseWindow()).ShowDialog();
+            }
+            else
+                timerOfTurns.Interval = TimeSpan.FromSeconds(3.5);
+
             GameSetter.Enemy.Speak();
+            timerOfTurns.Start();
         }
 
         private void btInventory_MouseDown(object sender, MouseButtonEventArgs e)
@@ -94,16 +115,20 @@ namespace Monstrum.Pages
 
         private void PlayerTurn(object sender, EventArgs e)
         {
-            if (GameSetter.Enemy.IsDead())
+            if (GameSetter.Enemy.IsDead() || GameSetter.Enemy.IsEscaped())
             {
+                if (GameSetter.Enemy.IsDead())
+                    GameSetter.KillsCounter++;
+
                 MediaHelper.PlayAudio("killSound");
-                GameSetter.IncreaseKillCounter();
+                GameSetter.IncreaseFightsCounter();
                 barEnemies.Value = GameSetter.FightsCounter;
                 txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
                 gridEnemy.Children.Clear();
                 GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
                 gridEnemy.Children.Add(GameSetter.Enemy);
             }
+
             timerOfTurns.Stop();
             BlockUnBlockFrame();
             pnlAction.Opacity = 1;

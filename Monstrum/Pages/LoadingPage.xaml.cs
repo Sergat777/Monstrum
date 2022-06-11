@@ -22,6 +22,8 @@ namespace Monstrum.Pages
     /// </summary>
     public partial class LoadingPage : Page
     {
+        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.075) };
+        private int letterIndex = 0;
         private string currentStory;
 
         public LoadingPage()
@@ -35,7 +37,31 @@ namespace Monstrum.Pages
             Classes.MediaHelper.SetGameMusic("loadingMusic");
             Classes.MediaHelper.SetBackground("1");
             txtHeader.Text = "ЧАСТЬ" + Classes.GameSetter.Chapter;
-            Classes.MediaHelper.SetTypingAnimation(txtStory, currentStory);
+            typingTimer.Tick += Type;
+            typingTimer.Start();
+        }
+
+        public void Type(object sender, EventArgs e)
+        {
+            if (Classes.ControllerManager.DarkScreen.Visibility == Visibility.Collapsed)
+            {
+                if (letterIndex != currentStory.Length)
+                {
+                    if (currentStory[letterIndex] == '\\' && currentStory[letterIndex + 1] == 'n')
+                        txtStory.Text += "\n";
+                    else
+                        txtStory.Text += currentStory[letterIndex];
+
+                    letterIndex++;
+                }
+                else
+                {
+                    typingTimer.Stop();
+                    Task.Delay(2000);
+                    imgLoad.Visibility = Visibility.Collapsed;
+                    btStart.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         private void btStart_MouseDown(object sender, MouseButtonEventArgs e)
@@ -45,7 +71,7 @@ namespace Monstrum.Pages
 
         private void Border_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            Classes.MediaHelper.StopTypingAnimation();
+            typingTimer.Stop();
             txtStory.Text = "";
             for (int i = 0; i < currentStory.Length; i++)
             {

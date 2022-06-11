@@ -34,7 +34,7 @@ namespace Monstrum.Classes
             return monster;
         }
 
-        public static void IncreaseKillCounter()
+        public static void IncreaseFightsCounter()
         {
             FightsCounter++;
             if (FightsCounter == EnemiesCounter)

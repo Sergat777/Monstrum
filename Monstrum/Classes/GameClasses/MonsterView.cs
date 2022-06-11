@@ -13,6 +13,7 @@ namespace Monstrum.Classes.GameClasses
 {
     internal class MonsterView : StackPanel
     {
+        private Random rndm = new Random();
         private static ImageBrush dialogBackgroundImage = new ImageBrush()
         {
             ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "wordBG.png"))
@@ -51,10 +52,9 @@ namespace Monstrum.Classes.GameClasses
         };
         private TextBlock _speachBlock = new TextBlock()
         {
-            FontSize = 24,
+            FontSize = 20,
             Foreground = Brushes.Black,
-            VerticalAlignment = VerticalAlignment.Center,
-            FontWeight = FontWeights.Bold
+            VerticalAlignment = VerticalAlignment.Center
         };
         private DispatcherTimer timerTalk = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
 
@@ -89,11 +89,48 @@ namespace Monstrum.Classes.GameClasses
             return _monster;
         }
 
+        public bool TryRun(float enemyDamage)
+        {
+            _monster.TryRun(enemyDamage);
+            if (_monster.GetIsEscaped())
+                UpdateImage();
+            else
+                Speak();
+            return _monster.GetIsEscaped();
+        }
+
         public void Speak()
         {
+            _speachBlock.Text = "";
             _dialogBlock.Visibility = Visibility.Visible;
-            MediaHelper.SetTypingAnimation(_speachBlock, "Аааааа ЕЕЕ! Я базаркаю...", 50);
+            MediaHelper.SetTypingAnimation(_speachBlock, GenerateSpeach());
+            timerTalk.Interval = TimeSpan.FromSeconds(3);
             timerTalk.Start();
+        }
+
+        public string GenerateSpeach()
+        {
+            string speach = "";
+
+            if (IsDead())
+            {
+                speach += "bloodSpeach";
+                speach += rndm.Next(1, 11);
+            }
+            else if (IsEscaped())
+            {
+                speach += "escapeSpeach";
+                speach += rndm.Next(1, 6);
+            }
+            else
+            {
+                speach += "angrySpeach";
+                speach += rndm.Next(1, 6);
+            }
+
+            speach = MediaHelper.GetSpeach(speach);
+
+            return speach;
         }
 
         public void ShutUp(object sender, EventArgs e)
@@ -103,14 +140,14 @@ namespace Monstrum.Classes.GameClasses
             timerTalk.Stop();
         }
 
-        public void Attack(MonsterView target)
-        {
-            target.ApplyDamage(_monster.GetDamage());
-        }
-
         public void Block()
         {
             _monster.OnBlock();
+        }
+
+        public void Attack(MonsterView target)
+        {
+            target.ApplyDamage(_monster.GetDamage());
         }
 
         public void ApplyDamage(float damage)
@@ -120,12 +157,14 @@ namespace Monstrum.Classes.GameClasses
             UpdateImage();
         }
 
+        public bool IsEscaped()
+        {
+            return _monster.GetIsEscaped();
+        }
+
         public bool IsDead()
         {
-            if (_healthBar.Value <= 0)
-                return true;
-            else
-                return false;
+            return _healthBar.Value <= 0;
         }
 
         public void UpdateImage()

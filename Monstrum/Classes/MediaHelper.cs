@@ -23,7 +23,8 @@ namespace Monstrum.Classes
         public static string SoundsPath = ResourcesPath + "Sounds\\";
 
         public static string FilesPath = ResourcesPath + "Files\\";
-        private static string[] plot = new string[8];
+        private static string[] _plot = new string[8];
+        private static Dictionary<string, string> _speaches = new Dictionary<string, string>();
 
         public static string ImagesPath = ResourcesPath + "Images\\";
         public static string AmunitionsPath = ImagesPath + "Amunitions\\";
@@ -44,10 +45,19 @@ namespace Monstrum.Classes
             _typingTimer.Tick += Type;
 
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
-            string text = reader.ReadToEnd();
+            _plot = reader.ReadToEnd().Split('|');
+            reader = new StreamReader(FilesPath + "Speaches.txt");
+            string[] speachesText = reader.ReadToEnd().Split('|');
+
+
             reader.Close();
 
-            plot = text.Split('|');
+            foreach (string speach in speachesText)
+            {
+                string[] newSpeach = speach.Split('_');
+                _speaches.Add(newSpeach[0], newSpeach[1]);
+            }
+            ;
         }
 
         public static void SetMonsterImage(Image image, string monsterName)
@@ -104,14 +114,13 @@ namespace Monstrum.Classes
             }
         }
 
-        private static DispatcherTimer _typingTimer = new DispatcherTimer();
+        private static DispatcherTimer _typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.05) };
         private static string _words;
         private static TextBlock _txtBlock;
         private static int _letterIndex;
 
-        public static void SetTypingAnimation(TextBlock textPlace, string typingText, int speedLetterInMilliseconds = 75)
+        public static void SetTypingAnimation(TextBlock textPlace, string typingText)
         {
-            _typingTimer.Interval = TimeSpan.FromMilliseconds(speedLetterInMilliseconds);
             _letterIndex = 0;
             _txtBlock = textPlace;
             _words = typingText;
@@ -125,21 +134,20 @@ namespace Monstrum.Classes
 
         public static void Type(object sender, EventArgs e)
         {
-            if (ControllerManager.DarkScreen.Visibility == Visibility.Collapsed)
-                if (_letterIndex != _words.Length)
+            if (_letterIndex != _words.Length)
+            {
+                if (_words[_letterIndex] == '\\' && _words[_letterIndex + 1] == 'n')
                 {
-                    if (_words[_letterIndex] == '\\' && _words[_letterIndex + 1] == 'n')
-                    {
-                        _txtBlock.Text += "\n";
-                        _letterIndex++;
-                    }
-                    else
-                        _txtBlock.Text += _words[_letterIndex];
-
+                    _txtBlock.Text += "\n";
                     _letterIndex++;
                 }
                 else
-                    _typingTimer.Stop();
+                    _txtBlock.Text += _words[_letterIndex];
+
+                _letterIndex++;
+            }
+            else
+                _typingTimer.Stop();
         }
 
         private static void MusicFinish(object sender, EventArgs e)
@@ -164,7 +172,12 @@ namespace Monstrum.Classes
 
         public static string GetStory(byte chapter)
         {
-            return plot[chapter];
+            return _plot[chapter];
+        }
+
+        public static string GetSpeach(string speachName)
+        {
+            return _speaches[speachName];
         }
     }
 }
