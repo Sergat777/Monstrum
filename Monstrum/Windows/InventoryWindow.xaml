@@ -32,10 +32,10 @@
                     <Image x:Name="imgHero" Height="250" Margin="5"/>
 
                     <StackPanel Orientation="Horizontal" Height="100" Background="{StaticResource paleGray}" Margin="2">
-                        <Image x:Name="imgHat" Margin="5" Source="/Resources/inventory.png"/>
-                        <Image x:Name="imgArmor" Margin="5" Source="/Resources/inventory.png"/>
-                        <Image x:Name="imgWeapon" Margin="5" Source="/Resources/inventory.png"/>
-                        <Image x:Name="imgShield" Margin="5" Source="/Resources/inventory.png"/>
+                        <Image x:Name="imgHat" MouseDown="imgHat_MouseDown" Margin="5" Source="/Resources/inventory.png"/>
+                        <Image x:Name="imgArmor" MouseDown="imgArmor_MouseDown"  Margin="5" Source="/Resources/inventory.png"/>
+                        <Image x:Name="imgWeapon" MouseDown="imgWeapon_MouseDown"  Margin="5" Source="/Resources/inventory.png"/>
+                        <Image x:Name="imgShield" MouseDown="imgShield_MouseDown"  Margin="5" Source="/Resources/inventory.png"/>
                     </StackPanel>
 
                     <StackPanel Margin="10">
@@ -60,8 +60,8 @@
 
                 <DockPanel DockPanel.Dock="Bottom" Height="150">
                     <DockPanel DockPanel.Dock="Bottom">
-                        <Border x:Name="btEquip" Style="{StaticResource roundButton}" DockPanel.Dock="Right"
-                            Padding="5" HorizontalAlignment="Right" BorderThickness="5">
+                        <Border x:Name="btEquip" MouseDown="btEquip_MouseDown" Style="{StaticResource roundButton}" Visibility="Hidden"
+                                DockPanel.Dock="Right" Padding="5" HorizontalAlignment="Right" BorderThickness="5">
                             <TextBlock Text="ЭКИПИРОВАТЬ" Style="{StaticResource txtButton}" FontSize="24"/>
                         </Border>
                         <TextBlock x:Name="txtStatInfluence"/>

@@ -65,5 +65,10 @@ namespace Monstrum.Classes.GameClasses
         {
             return _isEquip;
         }
+
+        public void SetIsEquip(bool isEquip)
+        {
+            _isEquip = isEquip;
+        }
     }
 }

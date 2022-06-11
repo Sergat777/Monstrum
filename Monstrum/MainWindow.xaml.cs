@@ -42,7 +42,10 @@ namespace Monstrum
             if (e.Key == Key.Escape)
                 new Windows.PauseWindow().ShowDialog();
             else if (e.Key == Key.Tab)
-                new Windows.InventoryWindow().ShowDialog();
+                if (GameSetter.HeroCurrentHealth > GameSetter.HeroMaxHealth * 0.5)
+                    new Windows.InventoryWindow().ShowDialog();
+                else
+                    new Windows.StopInventoryWindow().ShowDialog();
         }
     }
 }

@@ -22,6 +22,11 @@ namespace Monstrum.Classes.GameClasses
             ImageSource = MediaHelper.AmunitionsPath + _equipment.GetName() + ".png";
         }
 
+        public Equipment GetEquipment()
+        {
+            return _equipment;
+        }
+
         public EquipmentTypes GetEquipmentType()
         {
             return _equipment.GetItemType();

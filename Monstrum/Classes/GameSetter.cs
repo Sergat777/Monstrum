@@ -12,17 +12,33 @@ namespace Monstrum.Classes
 
         public static byte DifficultLevel { get; set; } = 1;
         public static byte Chapter { get; set; } = 1;
+        public static byte MonsterBottomIndex { get; set; } = 1;
+        public static byte MonsterTopIndex { get; set; } = 7;
+
+
+        public static GameClasses.MonsterView Hero { get; set; }
+        public static GameClasses.MonsterView Enemy { get; set; }
+
+
         public static string HeroName => "difficultLevel" + DifficultLevel;
-        public static float HeroHealth => 30 * DifficultLevel / 3 * Chapter;
-        public static float HeroDamage =>  2.5F * DifficultLevel * Chapter;
-        public static float HeroArmor => Chapter - 1;
+        public static float HeroMaxHealth => 30 * DifficultLevel / 3 * Chapter + AdditionalHealth;
+        public static float HeroCurrentHealth => Hero.GetMonster().GetHealth();
+        public static float HeroDamage =>  2.5F * DifficultLevel * Chapter + AdditionalDamage;
+        public static float HeroArmor => Chapter - 1 + AdditionalArmor;
+        public static float AdditionalHealth { get; set; } = 0;
+        public static float AdditionalDamage { get; set; } = 0;
+        public static float AdditionalArmor { get; set; } = 0;
+        public static List<GameClasses.EquipmentView> InventoryList { get; set; } = new List<GameClasses.EquipmentView>();
+        public static GameClasses.EquipmentView Hat { get; set; }
+        public static GameClasses.EquipmentView Armor { get; set; }
+        public static GameClasses.EquipmentView Weapon { get; set; }
+        public static GameClasses.EquipmentView Shield { get; set; }
+
+
         public static float FightsCounter { get; set; } = 0;
         public static float EnemiesCounter { get; set; } = 10;
         public static float KillsCounter { get; set; } = 0;
-        public static GameClasses.MonsterView Hero { get; set; }
-        public static GameClasses.MonsterView Enemy { get; set; }
-        public static byte MonsterBottomIndex { get; set; } = 1;
-        public static byte MonsterTopIndex { get; set; } = 7;
+
 
         public static GameClasses.Monster GenerateMonster()
         {
@@ -84,6 +100,71 @@ namespace Monstrum.Classes
             GameClasses.Equipment newEquipment = new GameClasses.Equipment(equipmentName, equipmentType, stat, value);
 
             return newEquipment;
+        }
+
+        public static void UpdateStats()
+        {
+            int statType;
+
+            float armor = 0;
+            float health = 0;
+            float damage = 0;
+
+            // Weapon
+            if (Weapon != null)
+            {
+                statType = (int)Weapon.GetEquipmentStat();
+
+                if (statType == 2)
+                    health += Weapon.GetEquipmentStatValue();
+                else
+                    damage += Weapon.GetEquipmentStatValue();
+            }
+
+            // Hat
+            if (Hat != null)
+            {
+                statType = (int)Hat.GetEquipmentStat();
+
+                if (statType == 1)
+                    armor += Hat.GetEquipmentStatValue();
+                else
+                    health += Hat.GetEquipmentStatValue();
+            }
+
+            // Armor
+            if (Armor != null)
+            {
+                statType = (int)Armor.GetEquipmentStat();
+
+                if (statType == 1)
+                    armor += Armor.GetEquipmentStatValue();
+                else
+                    health += Armor.GetEquipmentStatValue();
+            }
+
+            // Shield
+            if (Shield != null)
+            {
+                statType = (int)Shield.GetEquipmentStat();
+
+                if (statType == 1)
+                    armor += Shield.GetEquipmentStatValue();
+                else
+                    health += Shield.GetEquipmentStatValue();
+            }
+
+            AdditionalArmor = armor;
+            AdditionalHealth = health;
+            AdditionalDamage = damage;
+
+            // Update monster
+            GameClasses.Monster hero = Hero.GetMonster();
+
+            hero.SetMaxHealth(HeroMaxHealth);
+            hero.SetHealth(HeroCurrentHealth + AdditionalHealth);
+            hero.SetDamage(HeroDamage);
+            hero.SetArmor(HeroArmor);
         }
 
         public static void IncreaseFightsCounter()

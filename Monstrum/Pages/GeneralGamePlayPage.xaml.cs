@@ -41,7 +41,7 @@ namespace Monstrum.Pages
             barEnemies.Maximum = GameSetter.EnemiesCounter;
             txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
 
-            Monster hero = new Monster(GameSetter.HeroName, GameSetter.HeroHealth,
+            Monster hero = new Monster(GameSetter.HeroName, GameSetter.HeroMaxHealth,
                                                 GameSetter.HeroDamage, GameSetter.HeroArmor);
             GameSetter.Hero = new MonsterView(hero);
             gridHero.Children.Add(GameSetter.Hero);
@@ -93,7 +93,10 @@ namespace Monstrum.Pages
 
         private void btInventory_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            new Windows.InventoryWindow().ShowDialog();
+            if (GameSetter.HeroCurrentHealth > GameSetter.HeroMaxHealth * 0.5)
+                new Windows.InventoryWindow().ShowDialog();
+            else
+                new Windows.StopInventoryWindow().ShowDialog();
         }
 
         private void PlayerTurn(object sender, EventArgs e)
@@ -104,12 +107,12 @@ namespace Monstrum.Pages
                     GameSetter.KillsCounter++;
 
                 MediaHelper.PlayAudio("killSound");
-                GameSetter.IncreaseFightsCounter();
-                barEnemies.Value = GameSetter.FightsCounter;
-                txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
                 gridEnemy.Children.Clear();
                 GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
                 gridEnemy.Children.Add(GameSetter.Enemy);
+                GameSetter.IncreaseFightsCounter();
+                barEnemies.Value = GameSetter.FightsCounter;
+                txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
             }
 
             timerOfTurns.Stop();

@@ -83,6 +83,9 @@
     <Compile Include="Windows\QuestionWindow.xaml.cs">
       <DependentUpon>QuestionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\StopInventoryWindow.xaml.cs">
+      <DependentUpon>StopInventoryWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\QuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StopInventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +227,9 @@
   <ItemGroup>
     <Resource Include="Resources\lose.png" />
     <Resource Include="Resources\win.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

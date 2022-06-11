@@ -76,6 +76,12 @@ namespace Monstrum.Classes.GameClasses
             _maxHealth = maxHealth;
         }
 
+        public void SetHealth(float health)
+        {
+            _health = health;
+            CheckHealth();
+        }
+
         public void SetDamage(float damage)
         {
             _damage = damage;
