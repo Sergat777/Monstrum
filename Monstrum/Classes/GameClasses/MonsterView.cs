@@ -23,10 +23,9 @@ namespace Monstrum.Classes.GameClasses
         {
             ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "hitBG.png"))
         };
-        private StackPanel _healthPanel = new StackPanel()
+        private DockPanel _healthPanel = new DockPanel()
         {
             Background = new SolidColorBrush(Color.FromRgb(245, 197, 154)),
-            Orientation = Orientation.Horizontal,
             Margin = new Thickness(5)
         };
         private ProgressBar _healthBar = new ProgressBar();
@@ -107,12 +106,16 @@ namespace Monstrum.Classes.GameClasses
             UpdateHealthPanel();
             UpdateImage();
 
+
             // add health panel
-            _healthPanel.Children.Add(_healthBar);
-            _healthPanel.Children.Add(_healthCounter);
             _armorInf.Children.Add(_shieldImg);
             _armorInf.Children.Add(_armorCounter);
+            _armorInf.SetValue(DockProperty, Dock.Right);
             _healthPanel.Children.Add(_armorInf);
+            _healthCounter.SetValue(DockProperty, Dock.Right);
+            _healthBar.SetValue(DockProperty, Dock.Left);
+            _healthPanel.Children.Add(_healthCounter);
+            _healthPanel.Children.Add(_healthBar);
             Children.Add(_healthPanel);
             SetDock(_healthPanel, Dock.Top);
 
@@ -122,9 +125,9 @@ namespace Monstrum.Classes.GameClasses
             _imagePanel.Children.Add(_damageBlock);
             _dialogBlock.Children.Add(_speachBlock);
             _imagePanel.Children.Add(_dialogBlock);
+            _imagePanel.SetValue(DockProperty, Dock.Top);
 
             Children.Add(_imagePanel);
-            SetDock(_imagePanel, Dock.Top);
         }
 
         public Monster GetMonster()

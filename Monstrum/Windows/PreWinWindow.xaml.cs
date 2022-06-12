@@ -68,6 +68,7 @@ namespace Monstrum.Windows
 
         private void DockPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
+            typingTimer.Stop();
             Close();
             Classes.ControllerManager.DarkScreen.Opacity = 0;
             Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
