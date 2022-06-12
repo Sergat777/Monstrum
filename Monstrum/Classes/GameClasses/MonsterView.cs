@@ -88,7 +88,7 @@ namespace Monstrum.Classes.GameClasses
         {
             FontSize = 20,
             Foreground = Brushes.Black,
-            Margin = new Thickness(3),
+            Margin = new Thickness(10),
             VerticalAlignment = VerticalAlignment.Center
         };
         private DispatcherTimer timerTalk = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };

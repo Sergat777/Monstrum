@@ -29,7 +29,7 @@ namespace Monstrum.Classes.GameClasses
             else
                 speach += "angrySpeach";
 
-            speach += 1;//_rndm.Next(1, 11);
+            speach += _rndm.Next(1, 4);
             speach = MediaHelper.GetSpeach(speach);
 
             return speach;
