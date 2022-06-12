@@ -184,6 +184,9 @@ namespace Monstrum.Classes
                     MediaHelper.SetGameMusic("homeMusic");
 
                 new Windows.PreWinWindow(Boss.GetMonster().GetName()).ShowDialog();
+
+                new Windows.RewardWindow().ShowDialog();
+                new Windows.RewardWindow().ShowDialog();
                 new Windows.WinWindow().ShowDialog();
             }
             else if (FightsCounter >= EnemiesCounter)
