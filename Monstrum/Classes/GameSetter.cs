@@ -38,6 +38,7 @@ namespace Monstrum.Classes
         public static float FightsCounter { get; set; } = 0;
         public static float EnemiesCounter { get; set; } = 10;
         public static float KillsCounter { get; set; } = 0;
+        public static GameClasses.MonsterView Boss { get; set; } = null;
 
 
         public static GameClasses.Monster GenerateMonster()
@@ -173,8 +174,11 @@ namespace Monstrum.Classes
         {
             FightsCounter++;
             if (FightsCounter >= EnemiesCounter)
+            {
                 for (int i = 0; i < DifficultLevel; i++)
                     new Windows.RewardWindow().ShowDialog();
+                Boss = new GameClasses.MonsterView(new GameClasses.Boss("CAKE", 20, 2));
+            }
             else if (FightsCounter == EnemiesCounter * 0.5)
                 new Windows.RewardWindow().ShowDialog();
         }
@@ -183,6 +187,7 @@ namespace Monstrum.Classes
         {
             FightsCounter = 0;
             EnemiesCounter = 10;
+            Boss = null;
         }
     }
 }

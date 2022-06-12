@@ -234,7 +234,10 @@ namespace Monstrum.Classes.GameClasses
 
         public void UpdateImage()
         {
-            MediaHelper.SetMonsterImage(_imageMonster, _monster.GetName());
+            if (_monster is Boss)
+                _imageMonster.Source = new BitmapImage(new Uri(MediaHelper.BossesPath + _monster.GetName() + ".png"));
+            else
+                MediaHelper.SetMonsterImage(_imageMonster, _monster.GetName());
         }
 
         public void UpdateHealthPanel()

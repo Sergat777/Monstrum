@@ -10,14 +10,14 @@ namespace Monstrum.Classes.GameClasses
     {
        // private Random rndm = new Random();
 
-        private string _name;
-        private float _maxHealth;
-        private float _health;
-        private float _damage;
-        private float _armor;
-        private bool _isBlock = false;
-        private bool _isEscaped = false;
-        private bool _isAttacked = false;
+        protected private string _name;
+        protected private float _maxHealth;
+        protected private float _health;
+        protected private float _damage;
+        protected private float _armor;
+        protected private bool _isBlock = false;
+        protected private bool _isEscaped = false;
+        protected private bool _isAttacked = false;
 
         public Monster(string name, float maxHealth, float damage, float armor = 0)
         {

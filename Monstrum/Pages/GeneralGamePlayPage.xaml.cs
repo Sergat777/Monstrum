@@ -111,9 +111,13 @@ namespace Monstrum.Pages
 
                 MediaHelper.PlayAudio("killSound");
                 gridEnemy.Children.Clear();
-                GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
-                gridEnemy.Children.Add(GameSetter.Enemy);
                 GameSetter.IncreaseFightsCounter();
+                if (GameSetter.Boss != null)
+                    GameSetter.Enemy = GameSetter.Boss;
+                else
+                    GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
+
+                gridEnemy.Children.Add(GameSetter.Enemy);
                 barEnemies.Value = GameSetter.FightsCounter;
                 txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;
             }
