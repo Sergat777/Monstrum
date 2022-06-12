@@ -35,6 +35,22 @@ namespace Monstrum.Classes.GameClasses
             FontSize = 32,
             VerticalAlignment = VerticalAlignment.Center
         };
+        private StackPanel _armorInf = new StackPanel()
+        {
+            Orientation = Orientation.Horizontal,
+            Margin = new Thickness(5)
+        };
+        private Image _shieldImg = new Image()
+        {
+            Source = new BitmapImage(new Uri(MediaHelper.AmunitionsPath + "shield3.png")),
+            Margin = new Thickness(3),
+            Height = 30
+        };
+        private TextBlock _armorCounter = new TextBlock()
+        {
+            FontSize = 32,
+            VerticalAlignment = VerticalAlignment.Center
+        };
         private Grid _imagePanel = new Grid()
         {
             Margin = new Thickness(30)
@@ -65,7 +81,7 @@ namespace Monstrum.Classes.GameClasses
             HorizontalAlignment = HorizontalAlignment.Left,
             VerticalAlignment = VerticalAlignment.Bottom,
             Height = 170,
-            Width = 200,
+            Width = 210,
             Background = _dialogBackgroundImage,
             Visibility = Visibility.Collapsed
         };
@@ -73,6 +89,7 @@ namespace Monstrum.Classes.GameClasses
         {
             FontSize = 20,
             Foreground = Brushes.Black,
+            Margin = new Thickness(3),
             VerticalAlignment = VerticalAlignment.Center
         };
         private DispatcherTimer timerTalk = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
@@ -93,6 +110,9 @@ namespace Monstrum.Classes.GameClasses
             // add health panel
             _healthPanel.Children.Add(_healthBar);
             _healthPanel.Children.Add(_healthCounter);
+            _armorInf.Children.Add(_shieldImg);
+            _armorInf.Children.Add(_armorCounter);
+            _healthPanel.Children.Add(_armorInf);
             Children.Add(_healthPanel);
             SetDock(_healthPanel, Dock.Top);
 
@@ -222,6 +242,7 @@ namespace Monstrum.Classes.GameClasses
             _healthBar.Maximum = _monster.GetMaxHealth();
             _healthBar.Value = _monster.GetHealth();
             _healthCounter.Text = _monster.GetHealth().ToString() + "/" + _monster.GetMaxHealth();
+            _armorCounter.Text = _monster.GetArmor().ToString();
 
             if (_monster.GetHealth() >= _monster.GetMaxHealth() * 0.35)
                 _healthBar.Foreground = Brushes.LightGreen;

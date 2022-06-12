@@ -175,6 +175,8 @@ namespace Monstrum.Classes
             if (FightsCounter >= EnemiesCounter)
                 for (int i = 0; i < DifficultLevel; i++)
                     new Windows.RewardWindow().ShowDialog();
+            else if (FightsCounter == EnemiesCounter * 0.5)
+                new Windows.RewardWindow().ShowDialog();
         }
 
         public static void SetStandart(int enemyNumber = 10)
