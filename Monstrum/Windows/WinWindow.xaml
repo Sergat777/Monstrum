@@ -1,0 +1,52 @@
+﻿<Window x:Class="Monstrum.Windows.WinWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Monstrum.Windows"
+        mc:Ignorable="d" Height="800"
+        WindowStartupLocation="CenterScreen" Style="{StaticResource modalWindow}">
+    <Border Style="{StaticResource roundButton}" Margin="0">
+        <DockPanel Margin="20">
+            <StackPanel DockPanel.Dock="Top">
+                <Image Height="220" Source="/Resources/win.png"/>
+                <TextBlock Text="ГЛАВА ПРОЙДЕНА" Style="{StaticResource txtButton}"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="btMenu" Style="{StaticResource roundButton}" MouseDown="btMenu_MouseDown" Grid.Column="0">
+                    <TextBlock Text="МЕНЮ" Style="{StaticResource txtButton}" FontSize="24"/>
+                </Border>
+                <Border x:Name="btRepeat" Style="{StaticResource roundButton}" MouseDown="btRepeat_MouseDown"  Grid.Column="1">
+                    <TextBlock Text="ПОВТОР" Style="{StaticResource txtButton}" FontSize="24"/>
+                </Border>
+                <Border x:Name="btNext" Style="{StaticResource roundButton}" MouseDown="btNext_MouseDown" Grid.Column="2">
+                    <TextBlock Text="ДАЛЕЕ" Style="{StaticResource txtButton}" FontSize="24"/>
+                </Border>
+            </Grid>
+            <StackPanel Margin="20">
+                <TextBlock Text="СТАТИСТИКА" Style="{StaticResource txtButton}" FontSize="34" FontWeight="Bold"/>
+                <DockPanel Margin="10" LastChildFill="False">
+                    <TextBlock Text="Убийств за главу" DockPanel.Dock="Left" FontSize="32"/>
+                    <TextBlock x:Name="txtKills" DockPanel.Dock="Right" FontSize="32"/>
+                </DockPanel>
+                <DockPanel Margin="10" LastChildFill="False">
+                    <TextBlock Text="Пощад за главу" DockPanel.Dock="Left" FontSize="32"/>
+                    <TextBlock x:Name="txtSpares" DockPanel.Dock="Right" FontSize="32"/>
+                </DockPanel>
+                <DockPanel Margin="10" LastChildFill="False">
+                    <TextBlock Text="Урона нанесено" DockPanel.Dock="Left" FontSize="32"/>
+                    <TextBlock x:Name="txtTotalDamage" DockPanel.Dock="Right" FontSize="32"/>
+                </DockPanel>
+                <DockPanel Margin="10" LastChildFill="False">
+                    <TextBlock Text="Коэффицент жестокости" DockPanel.Dock="Left" FontSize="32"/>
+                    <TextBlock x:Name="txtCruels" DockPanel.Dock="Right" FontSize="32"/>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</Window>

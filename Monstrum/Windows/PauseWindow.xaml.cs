@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Monstrum.Windows
 {
@@ -37,6 +26,7 @@ namespace Monstrum.Windows
         {
             if ((bool)new QuestionWindow().ShowDialog())
             {
+                Close();
                 Classes.ControllerManager.DarkScreen.Opacity = 0;
                 Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
                 Classes.ControllerManager.MainAppFrame.Navigate(new Pages.GeneralGamePlayPage());
@@ -47,7 +37,6 @@ namespace Monstrum.Windows
         {
             if ((bool)new QuestionWindow().ShowDialog())
             {
-                DialogResult = false;
                 App.Current.Shutdown();
             }
         }

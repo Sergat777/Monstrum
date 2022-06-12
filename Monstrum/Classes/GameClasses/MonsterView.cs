@@ -146,27 +146,9 @@ namespace Monstrum.Classes.GameClasses
         {
             _speachBlock.Text = "";
             _dialogBlock.Visibility = Visibility.Visible;
-            MediaHelper.SetTypingAnimation(_speachBlock, GenerateSpeach());
+            MediaHelper.SetTypingAnimation(_speachBlock, _monster.GenerateSpeach());
             timerTalk.Interval = TimeSpan.FromSeconds(3);
             timerTalk.Start();
-        }
-
-        public string GenerateSpeach()
-        {
-            string speach = "";
-            if (IsDead())
-                speach += "bloodSpeach";
-            else if (IsEscaped())
-                speach += "escapeSpeach";
-            else if (IsAttacked())
-                speach += "simpleSpeach";
-            else
-                speach += "angrySpeach";
-
-            speach += _rndm.Next(1, 11);
-            speach = MediaHelper.GetSpeach(speach);
-
-            return speach;
         }
 
         public void ShutUp(object sender, EventArgs e)
@@ -207,7 +189,7 @@ namespace Monstrum.Classes.GameClasses
             if (IsAttacked())
                 if (wasBlock)
                     if (_monster.GetArmor() > 0)
-                        ShowHit(damage - _monster.GetArmor() * 2);
+                        ShowHit((float)Math.Round(damage - _monster.GetArmor() * 2, 1));
                     else
                         ShowHit(damage - 1);
                 else

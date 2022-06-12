@@ -26,6 +26,7 @@ namespace Monstrum.Classes
         private static string[] _plot;
         private static Dictionary<string, string> _speaches;
         private static Dictionary<string, string> _itemsDescription;
+        private static Dictionary<string, string> _bossSpeaches;
 
         public static string ImagesPath = ResourcesPath + "Images\\";
         public static string AmunitionsPath = ImagesPath + "Amunitions\\";
@@ -41,13 +42,16 @@ namespace Monstrum.Classes
             SetBackground("field");
             SetGameMusic("beginMusic");
 
+            DownloadFiles();
+
             _currentMusic.MediaEnded += MusicFinish;
             _timerDarkScreen.Tick += ChangeDark;
             _typingTimer.Tick += Type;
+        }
 
+        private static void DownloadFiles()
+        {
             _plot = new string[8];
-            _speaches = new Dictionary<string, string>();
-            _itemsDescription = new Dictionary<string, string>();
 
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
             _plot = reader.ReadToEnd().Split('|');
@@ -55,20 +59,25 @@ namespace Monstrum.Classes
             string[] speachesText = reader.ReadToEnd().Split('|');
             reader = new StreamReader(FilesPath + "Amunitions.txt");
             string[] descriptions = reader.ReadToEnd().Split('|');
-
+            reader = new StreamReader(FilesPath + "BossStory.txt");
+            string[] bossesWords = reader.ReadToEnd().Split('|');
 
             reader.Close();
+            _speaches = new Dictionary<string, string>();
+            _itemsDescription = new Dictionary<string, string>();
+            _bossSpeaches = new Dictionary<string, string>();
 
-            foreach (string speach in speachesText)
-            {
-                string[] newSpeach = speach.Split('_');
-                _speaches.Add(newSpeach[0], newSpeach[1]);
-            }
+            DownloadDictionary(_speaches, speachesText);
+            DownloadDictionary(_itemsDescription, descriptions);
+            DownloadDictionary(_bossSpeaches, bossesWords);
+        }
 
-            foreach (string itemInf in descriptions)
+        public static void DownloadDictionary(Dictionary<string, string> dict, string[] dictContent)
+        {
+            foreach (string part in dictContent)
             {
-                string[] newItem = itemInf.Split('_');
-                _itemsDescription.Add(newItem[0], newItem[1]);
+                string[] newItem = part.Split('_');
+                dict.Add(newItem[0], newItem[1]);
             }
         }
 
@@ -195,6 +204,11 @@ namespace Monstrum.Classes
         public static string GetItemDescription(string itemName)
         {
             return _itemsDescription[itemName];
+        }
+
+        public static string GetBossSpeach(string bossName)
+        {
+            return _bossSpeaches[bossName];
         }
     }
 }

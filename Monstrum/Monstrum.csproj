@@ -102,6 +102,9 @@
     <Compile Include="Pages\TutorialPages\TtPage9.xaml.cs">
       <DependentUpon>TtPage9.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\BossWindow.xaml.cs">
+      <DependentUpon>BossWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,9 @@
     </Compile>
     <Compile Include="Windows\PauseWindow.xaml.cs">
       <DependentUpon>PauseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PreWinWindow.xaml.cs">
+      <DependentUpon>PreWinWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\QuestionWindow.xaml.cs">
       <DependentUpon>QuestionWindow.xaml</DependentUpon>
@@ -122,6 +128,9 @@
     </Compile>
     <Compile Include="Windows\TutorialWindow.xaml.cs">
       <DependentUpon>TutorialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinWindow.xaml.cs">
+      <DependentUpon>WinWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\BossWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\InventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PauseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PreWinWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\TutorialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

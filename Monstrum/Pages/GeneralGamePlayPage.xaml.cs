@@ -48,6 +48,7 @@ namespace Monstrum.Pages
                                                 GameSetter.HeroDamage, GameSetter.HeroArmor);
             GameSetter.Hero = new MonsterView(hero);
             gridHero.Children.Add(GameSetter.Hero);
+            GameSetter.UpdateStats();
 
             GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
             gridEnemy.Children.Add(GameSetter.Enemy);
@@ -56,6 +57,7 @@ namespace Monstrum.Pages
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GameSetter.Hero.Attack(GameSetter.Enemy);
+            GameSetter.TotalDamage += GameSetter.HeroDamage - GameSetter.Enemy.GetMonster().GetArmor();
             MediaHelper.PlayAudio("splashSound");
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
@@ -107,7 +109,10 @@ namespace Monstrum.Pages
             if (GameSetter.Enemy.IsDead() || GameSetter.Enemy.IsEscaped())
             {
                 if (GameSetter.Enemy.IsDead())
+                {
                     GameSetter.KillsCounter++;
+                    GameSetter.BloodIndex += GameSetter.KillsCounter * 0.001F;
+                }
 
                 MediaHelper.PlayAudio("killSound");
                 gridEnemy.Children.Clear();
@@ -116,7 +121,6 @@ namespace Monstrum.Pages
                     GameSetter.Enemy = GameSetter.Boss;
                 else
                     GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
-
                 gridEnemy.Children.Add(GameSetter.Enemy);
                 barEnemies.Value = GameSetter.FightsCounter;
                 txtEnemies.Text = GameSetter.FightsCounter + "/" + GameSetter.EnemiesCounter;

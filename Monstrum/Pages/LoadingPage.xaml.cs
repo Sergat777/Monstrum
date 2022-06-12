@@ -35,7 +35,7 @@ namespace Monstrum.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Classes.MediaHelper.SetGameMusic("loadingMusic");
-            Classes.MediaHelper.SetBackground("1");
+            Classes.MediaHelper.SetBackground(Classes.GameSetter.Chapter.ToString());
             txtHeader.Text = "ЧАСТЬ" + Classes.GameSetter.Chapter;
             typingTimer.Tick += Type;
             typingTimer.Start();
@@ -60,7 +60,7 @@ namespace Monstrum.Pages
                 else
                 {
                     typingTimer.Stop();
-                    Task.Delay(2000);
+                    Thread.Sleep(2000);
                     imgLoad.Visibility = Visibility.Collapsed;
                     btStart.Visibility = Visibility.Visible;
                 }

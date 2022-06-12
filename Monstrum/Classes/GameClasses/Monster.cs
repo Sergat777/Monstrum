@@ -8,7 +8,7 @@ namespace Monstrum.Classes.GameClasses
 {
     internal class Monster
     {
-       // private Random rndm = new Random();
+        protected private Random _rndm = new Random();
 
         protected private string _name;
         protected private float _maxHealth;
@@ -22,10 +22,10 @@ namespace Monstrum.Classes.GameClasses
         public Monster(string name, float maxHealth, float damage, float armor = 0)
         {
             _name = name;
-            _maxHealth = maxHealth;
-            _health = maxHealth;
-            _damage = damage;
-            _armor = armor;
+            _maxHealth = (float)Math.Round(maxHealth,  1);
+            _health = (float)Math.Round(maxHealth, 1);
+            _damage = (float)Math.Round(damage, 1);
+            _armor = (float)Math.Round(armor, 1);
         }
 
         // getters
@@ -36,7 +36,7 @@ namespace Monstrum.Classes.GameClasses
 
         public float GetMaxHealth()
         {
-            return _maxHealth;
+            return (float)Math.Round(_maxHealth, 1);
         }
 
         public float GetHealth()
@@ -46,12 +46,12 @@ namespace Monstrum.Classes.GameClasses
 
         public float GetDamage()
         {
-            return _damage;
+            return (float)Math.Round(_damage, 1);
         }
 
         public float GetArmor()
         {
-            return _armor;
+            return (float)Math.Round(_armor, 1);
         }
 
         public bool GetIsBlock()
@@ -92,7 +92,7 @@ namespace Monstrum.Classes.GameClasses
             _armor = armor;
         }
 
-        public bool TryRun(float potentionalDamage)
+        virtual public bool TryRun(float potentionalDamage)
         {
             if (potentionalDamage >= _health)
             {
@@ -103,6 +103,24 @@ namespace Monstrum.Classes.GameClasses
                 _isAttacked = false;
 
             return potentionalDamage >= _health;
+        }
+
+        virtual public string GenerateSpeach()
+        {
+            string speach = "";
+            if (_health <= 0)
+                speach += "bloodSpeach";
+            else if (_isEscaped)
+                speach += "escapeSpeach";
+            else if (_isAttacked)
+                speach += "simpleSpeach";
+            else
+                speach += "angrySpeach";
+
+            speach += _rndm.Next(1, 11);
+            speach = MediaHelper.GetSpeach(speach);
+
+            return speach;
         }
 
         public void OnBlock()
@@ -127,11 +145,11 @@ namespace Monstrum.Classes.GameClasses
             }
         }
 
-        public void ApplyDamage(float incommingDamage)
+        virtual public void ApplyDamage(float incommingDamage)
         {
             if (incommingDamage > _armor)
             {
-                if (_health - incommingDamage <= 0)
+                if (_health - (incommingDamage - _armor) <= 0)
                     _health = 0;
                 else
                     _health -= incommingDamage - _armor;
@@ -153,7 +171,7 @@ namespace Monstrum.Classes.GameClasses
                 Die();
         }
 
-        public void Die()
+        virtual public void Die()
         {
             _name = "skull";
         }
