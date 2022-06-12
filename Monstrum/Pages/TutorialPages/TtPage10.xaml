@@ -1,0 +1,34 @@
+﻿<Page x:Class="Monstrum.Pages.TutorialPages.TtPage10"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Monstrum.Pages.TutorialPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="TtPage10">
+
+    <DockPanel>
+        <TextBlock Text="ЗАКЛЮЧЕНИЕ" Style="{StaticResource txtButton}" DockPanel.Dock="Top"/>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Image x:Name="btPrevious" Source="/Resources/left.png" Height="50"
+               DockPanel.Dock="Left" MouseDown="btPrevious_MouseDown"  Margin="10"/>
+            <Border x:Name="btEnd" Style="{StaticResource roundButton}" BorderThickness="5" Height="70"
+                    DockPanel.Dock="Right" MouseDown="btEnd_MouseDown" Margin="10">
+                <TextBlock Text="Завершить обучение" FontSize="28"/>
+            </Border>
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
+            <Image  Margin="10" Height="200" Source="/Resources/12.png"/>
+            <Image  Margin="10" Height="200" Source="/Resources/13.png"/>
+        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Center">
+            <TextBlock Text="Некоторые монстры мира Monstrum могут показаться вам слишком резкими или агрессивными" FontSize="24"/>
+            <TextBlock Text="Постарайтесь не обижаться на них, а понять что такими они стали не по своей вине" Margin="5" FontSize="24"/>
+            <TextBlock Text="Их образ жизни отличается от нашего, но глубоко внутри они такие же люди как и мы" Margin="5" FontSize="24"/>
+            <TextBlock Text="Несмотря на то, что вы превращаетесь в монстра, постарайтесь всеми силами все таки остаться человеком..." Margin="5" FontSize="24"/>
+            <TextBlock Text="УДАЧИ В ПУТИ!" Margin="5" FontSize="24" FontWeight="Bold"/>
+        </StackPanel>
+    </DockPanel>
+</Page>

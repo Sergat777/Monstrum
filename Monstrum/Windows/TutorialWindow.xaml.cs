@@ -26,6 +26,7 @@ namespace Monstrum.Windows
             Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
             tutorialFrame.Navigate(new Pages.TutorialPages.StartPage());
             Classes.ControllerManager.TutorialFrame = tutorialFrame;
+            Classes.ControllerManager.TutorialWindow = this;
         }
 
         private void btSkip_MouseDown(object sender, MouseButtonEventArgs e)
@@ -37,7 +38,8 @@ namespace Monstrum.Windows
 
         private void btStart_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            tutorialFrame.Navigate(new Pages.TutorialPages.TtPage1());
+            gridButtons.Visibility = Visibility.Collapsed;
         }
     }
 }

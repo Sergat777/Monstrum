@@ -74,8 +74,32 @@
     <Compile Include="Pages\TutorialPages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage10.xaml.cs">
+      <DependentUpon>TtPage10.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TutorialPages\TtPage1.xaml.cs">
       <DependentUpon>TtPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage3.xaml.cs">
+      <DependentUpon>TtPage3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage4.xaml.cs">
+      <DependentUpon>TtPage4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage5.xaml.cs">
+      <DependentUpon>TtPage5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage6.xaml.cs">
+      <DependentUpon>TtPage6.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage7.xaml.cs">
+      <DependentUpon>TtPage7.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage8.xaml.cs">
+      <DependentUpon>TtPage8.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TutorialPages\TtPage9.xaml.cs">
+      <DependentUpon>TtPage9.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
@@ -137,7 +161,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\TutorialPages\TtPage10.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TutorialPages\TtPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage7.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage8.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtPage9.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +330,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\13.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

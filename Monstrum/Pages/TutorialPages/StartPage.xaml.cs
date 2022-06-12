@@ -27,7 +27,7 @@ namespace Monstrum.Pages.TutorialPages
 
         private void btNext_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Classes.ControllerManager.TutorialFrame.Navigate(new TtPage1());
         }
     }
 }

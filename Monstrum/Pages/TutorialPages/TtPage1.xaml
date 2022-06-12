@@ -5,15 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Monstrum.Pages.TutorialPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="TtPage1">
 
     <DockPanel>
+        <TextBlock Text="ОБУЧЕНИЕ" Style="{StaticResource txtButton}" DockPanel.Dock="Top"/>
         <Image x:Name="btNext" DockPanel.Dock="Bottom" Source="/Resources/right.png" Height="50"
                HorizontalAlignment="Right" MouseDown="btNext_MouseDown"  Margin="10"/>
         <StackPanel Margin="5">
-            <Image  Margin="10" HorizontalAlignment="Center" Height="250"/>
-            <TextBlock Text=""/>
+            <Image  Margin="10" HorizontalAlignment="Center" Height="250" Source="/Resources/1.png"/>
+            <TextBlock Text="Добро пожаловать в MONSTRUM!" FontSize="28" FontWeight="Bold"/>
+            <TextBlock Text="Это обучение познакомит вас с основными элементами игры и расскажет о некоторых ее особенностях" FontSize="28"/>
+            <TextBlock Text="Постарайтесь понять и запомнить все!" FontSize="28" FontWeight="Bold"/>
         </StackPanel>
     </DockPanel>
 </Page>

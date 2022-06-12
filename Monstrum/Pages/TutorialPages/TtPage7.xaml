@@ -1,0 +1,31 @@
+﻿<Page x:Class="Monstrum.Pages.TutorialPages.TtPage7"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Monstrum.Pages.TutorialPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="TtPage7">
+
+    <DockPanel>
+        <TextBlock Text="ПРОХОЖДЕНИЕ ГЛАВЫ" Style="{StaticResource txtButton}" DockPanel.Dock="Top"/>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Image x:Name="btPrevious" Source="/Resources/left.png" Height="50"
+               DockPanel.Dock="Left" MouseDown="btPrevious_MouseDown"  Margin="10"/>
+            <Image x:Name="btNext" Source="/Resources/right.png" Height="50"
+               DockPanel.Dock="Right" MouseDown="btNext_MouseDown"  Margin="10"/>
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
+            <Image  Margin="10" Width="400" Source="/Resources/7.png"/>
+            <Image  Margin="10" Height="250" Source="/Resources/8.png"/>
+        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Center">
+            <TextBlock Text="Каждый раз когда вы побеждаете в схватке счетчик врагов изменяется" FontSize="24"/>
+            <TextBlock Text="Цель каждой главы победить всех противников" Margin="5" FontSize="24"/>
+            <TextBlock Text="Даже если вы решили пощадить противника, это считается победой" Margin="5" FontSize="24"/>
+            <TextBlock Text="Заполнение шкалы говорит о том, что глава практически завершилась..." Margin="5" FontSize="24"/>
+        </StackPanel>
+    </DockPanel>
+</Page>
