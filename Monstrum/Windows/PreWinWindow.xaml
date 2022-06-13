@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monstrum.Windows"
         mc:Ignorable="d"
-         WindowStartupLocation="CenterScreen" Style="{StaticResource modalWindow}" Width="900">
+         WindowStartupLocation="CenterScreen" Style="{StaticResource modalWindow}" Width="1000">
     <Border Style="{StaticResource roundButton}" HorizontalAlignment="Stretch" Background="{StaticResource paleGray}">
         <DockPanel MouseRightButtonDown="DockPanel_MouseRightButtonDown">
             <Image x:Name="imgBoss" Width="300" DockPanel.Dock="Left"/>

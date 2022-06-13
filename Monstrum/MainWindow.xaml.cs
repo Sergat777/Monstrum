@@ -24,13 +24,16 @@ namespace Monstrum
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape)
-                new Windows.PauseWindow().ShowDialog();
-            else if (e.Key == Key.Tab)
-                if (GameSetter.HeroCurrentHealth > GameSetter.HeroMaxHealth * 0.5)
-                    new Windows.InventoryWindow().ShowDialog();
-                else
-                    new Windows.StopInventoryWindow().ShowDialog();
+            if (ControllerManager.KeysAreEnable)
+            {
+                if (e.Key == Key.Escape)
+                    new Windows.PauseWindow().ShowDialog();
+                else if (e.Key == Key.Tab)
+                    if (GameSetter.HeroCurrentHealth > GameSetter.HeroMaxHealth * 0.5)
+                        new Windows.InventoryWindow().ShowDialog();
+                    else
+                        new Windows.StopInventoryWindow().ShowDialog();
+            }
         }
     }
 }

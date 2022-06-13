@@ -52,6 +52,8 @@ namespace Monstrum.Pages
 
             GameSetter.Enemy = new MonsterView(GameSetter.GenerateMonster());
             gridEnemy.Children.Add(GameSetter.Enemy);
+
+            ControllerManager.KeysAreEnable = true;
         }
 
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -73,7 +75,6 @@ namespace Monstrum.Pages
         private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GameSetter.Hero.Block();
-            MediaHelper.PlayAudio("shieldSound");
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
 

@@ -11,8 +11,6 @@ namespace Monstrum.Windows
         public TutorialWindow()
         {
             InitializeComponent();
-            Classes.ControllerManager.DarkScreen.Opacity = 0.8;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
             tutorialFrame.Navigate(new Pages.TutorialPages.StartPage());
             Classes.ControllerManager.TutorialFrame = tutorialFrame;
             Classes.ControllerManager.TutorialWindow = this;
@@ -21,8 +19,6 @@ namespace Monstrum.Windows
         private void btSkip_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
-            Classes.ControllerManager.DarkScreen.Opacity = 0;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
         }
 
         private void btStart_MouseDown(object sender, MouseButtonEventArgs e)

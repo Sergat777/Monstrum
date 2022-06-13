@@ -8,9 +8,15 @@ namespace Monstrum.Classes.GameClasses
 {
     internal class Boss : Monster
     {
-        public Boss(string name, float maxHealth, float damage, float armor = 2) : base(name, maxHealth, damage, armor)
+        private byte _chapter;
+
+        public Boss(int chapter, float maxHealth, float damage, float armor = 2) : base(null ,maxHealth, damage, armor)
         {
-            _name = name;
+            _chapter = (byte)chapter;
+            if (chapter == 1)
+                _name = "CAKE";
+            else
+                _name = "LEAD";
             _maxHealth = maxHealth;
             _damage = damage;
             _armor = armor;
@@ -29,7 +35,7 @@ namespace Monstrum.Classes.GameClasses
             else
                 speach += "angrySpeach";
 
-            speach += _rndm.Next(1, 4);
+            speach += _rndm.Next(1, 3 + _chapter);
             speach = MediaHelper.GetSpeach(speach);
 
             return speach;

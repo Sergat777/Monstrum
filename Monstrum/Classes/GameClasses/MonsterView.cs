@@ -54,7 +54,7 @@ namespace Monstrum.Classes.GameClasses
         {
             Margin = new Thickness(30)
         };
-        private Image _imageMonster = new Image()
+        private Image _monsterImage = new Image()
         {
             Margin = new Thickness(5)
         };
@@ -91,8 +91,17 @@ namespace Monstrum.Classes.GameClasses
             Margin = new Thickness(10),
             VerticalAlignment = VerticalAlignment.Center
         };
+        private Image _blockImage = new Image()
+        {
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Bottom,
+            Height = 170,
+            Source = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "shieldBG.png")),
+            Visibility = Visibility.Collapsed
+        };
         private DispatcherTimer timerTalk = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
         private DispatcherTimer timerHit = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.65) };
+        private DispatcherTimer timerBlock = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.65) };
 
         public MonsterView(Monster monster)
         {
@@ -101,6 +110,7 @@ namespace Monstrum.Classes.GameClasses
 
             timerTalk.Tick += ShutUp;
             timerHit.Tick += HideHit;
+            timerBlock.Tick += HideBlock;
 
             // Update controls
             UpdateHealthPanel();
@@ -111,22 +121,22 @@ namespace Monstrum.Classes.GameClasses
             _armorInf.Children.Add(_shieldImg);
             _armorInf.Children.Add(_armorCounter);
             _armorInf.SetValue(DockProperty, Dock.Right);
+            _healthPanel.SetValue(DockProperty, Dock.Top);
             _healthPanel.Children.Add(_armorInf);
             _healthCounter.SetValue(DockProperty, Dock.Right);
             _healthBar.SetValue(DockProperty, Dock.Left);
             _healthPanel.Children.Add(_healthCounter);
             _healthPanel.Children.Add(_healthBar);
             Children.Add(_healthPanel);
-            SetDock(_healthPanel, Dock.Top);
 
             // add image panel
-            _imagePanel.Children.Add(_imageMonster);
             _damageBlock.Children.Add(_hitBlock);
-            _imagePanel.Children.Add(_damageBlock);
             _dialogBlock.Children.Add(_speachBlock);
+            _imagePanel.Children.Add(_monsterImage);
+            _imagePanel.Children.Add(_damageBlock);
             _imagePanel.Children.Add(_dialogBlock);
+            _imagePanel.Children.Add(_blockImage);
             _imagePanel.SetValue(DockProperty, Dock.Top);
-
             Children.Add(_imagePanel);
         }
 
@@ -164,7 +174,7 @@ namespace Monstrum.Classes.GameClasses
         public void ShowHit(float damage)
         {
             _damageBlock.Visibility = Visibility.Visible;
-            _hitBlock.Text = damage.ToString();
+            _hitBlock.Text = Math.Round(damage, 1).ToString();
             timerHit.Start();
         }
 
@@ -173,6 +183,19 @@ namespace Monstrum.Classes.GameClasses
             _damageBlock.Visibility = Visibility.Collapsed;
             _hitBlock.Text = null;
             timerHit.Stop();
+        }
+
+        public void ShowBlock()
+        {
+            _blockImage.Visibility = Visibility.Visible;
+            MediaHelper.PlayAudio("shieldSound");
+            timerBlock.Start();
+        }
+
+        public void HideBlock(object sender, EventArgs e)
+        {
+            _blockImage.Visibility = Visibility.Collapsed;
+            timerBlock.Stop();
         }
 
         public void Block()
@@ -197,6 +220,8 @@ namespace Monstrum.Classes.GameClasses
                         ShowHit(damage - 1);
                 else
                     ShowHit(damage - _monster.GetArmor());
+            else
+                ShowBlock();
 
             UpdateHealthPanel();
             UpdateImage();
@@ -220,9 +245,9 @@ namespace Monstrum.Classes.GameClasses
         public void UpdateImage()
         {
             if (_monster is Boss)
-                _imageMonster.Source = new BitmapImage(new Uri(MediaHelper.BossesPath + _monster.GetName() + ".png"));
+                _monsterImage.Source = new BitmapImage(new Uri(MediaHelper.BossesPath + _monster.GetName() + ".png"));
             else
-                MediaHelper.SetMonsterImage(_imageMonster, _monster.GetName());
+                MediaHelper.SetMonsterImage(_monsterImage, _monster.GetName());
         }
 
         public void UpdateHealthPanel()

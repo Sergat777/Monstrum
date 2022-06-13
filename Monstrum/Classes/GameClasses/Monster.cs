@@ -117,7 +117,7 @@ namespace Monstrum.Classes.GameClasses
             else
                 speach += "angrySpeach";
 
-            speach += _rndm.Next(1, 11);
+            speach += _rndm.Next(1, 11) + "." + GameSetter.Chapter;
             speach = MediaHelper.GetSpeach(speach);
 
             return speach;

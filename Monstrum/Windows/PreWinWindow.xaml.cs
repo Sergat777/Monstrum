@@ -20,15 +20,14 @@ namespace Monstrum.Windows
     /// </summary>
     public partial class PreWinWindow : Window
     {
-        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.075) };
+        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.06) };
         private int letterIndex = 0;
         private string currentBossSpeach;
 
         public PreWinWindow(string bossName)
         {
             InitializeComponent();
-            Classes.ControllerManager.DarkScreen.Opacity = 0.8;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
+            Classes.MediaHelper.BlockUnBlockDarkScreen();
             imgBoss.Source = new BitmapImage(new Uri(Classes.MediaHelper.BossesPath + bossName + ".png"));
             currentBossSpeach = Classes.MediaHelper.GetBossSpeach(bossName);
             typingTimer.Tick += Type;
@@ -54,8 +53,6 @@ namespace Monstrum.Windows
                 typingTimer.Stop();
                 Task.Delay(2000);
                 btOk.Visibility = Visibility.Visible;
-                Classes.ControllerManager.DarkScreen.Opacity = 0.8;
-                Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
             }
         }
 
@@ -63,6 +60,7 @@ namespace Monstrum.Windows
         {
             Close();
             Classes.ControllerManager.DarkScreen.Opacity = 0;
+            Classes.MediaHelper.BlockUnBlockDarkScreen();
             Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
         }
 
@@ -70,8 +68,7 @@ namespace Monstrum.Windows
         {
             typingTimer.Stop();
             Close();
-            Classes.ControllerManager.DarkScreen.Opacity = 0;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+            Classes.MediaHelper.BlockUnBlockDarkScreen();
         }
     }
 }

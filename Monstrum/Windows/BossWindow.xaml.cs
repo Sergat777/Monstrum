@@ -12,15 +12,15 @@ namespace Monstrum.Windows
     /// </summary>
     public partial class BossWindow : Window
     {
-        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.075) };
+        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.06) };
         private int letterIndex = 0;
         private string currentBossSpeach;
 
         public BossWindow(string bossName)
         {
             InitializeComponent();
-            Classes.ControllerManager.DarkScreen.Opacity = 0.8;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
+            Classes.ControllerManager.KeysAreEnable = false;
+            Classes.MediaHelper.BlockUnBlockDarkScreen();
             imgBoss.Source = new BitmapImage(new Uri(Classes.MediaHelper.BossesPath + bossName + ".png"));
             currentBossSpeach = Classes.MediaHelper.GetBossSpeach(bossName);
             typingTimer.Tick += Type;
@@ -52,16 +52,14 @@ namespace Monstrum.Windows
         private void btOk_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
-            Classes.ControllerManager.DarkScreen.Opacity = 0;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+            Classes.MediaHelper.BlockUnBlockDarkScreen();
         }
 
         private void DockPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             typingTimer.Stop();
             Close();
-            Classes.ControllerManager.DarkScreen.Opacity = 0;
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+            Classes.MediaHelper.BlockUnBlockDarkScreen();
         }
     }
 }

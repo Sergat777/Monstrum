@@ -14,6 +14,7 @@ namespace Monstrum.Classes
         public static MainWindow AppWindow { get; set; }
         public static Window TutorialWindow { get; set; }
         public static Grid DarkScreen { get; set; }
+        public static bool KeysAreEnable { get; set; } = false;
         public static Frame MainAppFrame { get; set; }
         public static Frame TutorialFrame { get; set; }
     }

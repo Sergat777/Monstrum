@@ -64,19 +64,19 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Border x:Name="btInventory" MouseDown="btInventory_MouseDown"  Margin="5" Padding="5"
-                        Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image x:Name="imgInventory" Source="/Resources/inventory.png" Height="50" Width="50"/>
-                        <TextBlock Text="ИНВЕНТАРЬ" Style="{StaticResource txtButton}" FontSize="28"/>
-                    </StackPanel>
-                </Border>
-
                 <Border x:Name="btPause" MouseDown="btPause_MouseDown"  Margin="5" Padding="5"
-                        Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="1">
+                        Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image x:Name="imgPause" Source="/Resources/logo.png" Height="50" Width="50"/>
                         <TextBlock Text="ПАУЗА" Style="{StaticResource txtButton}" FontSize="28"/>
+                    </StackPanel>
+                </Border>
+                
+                <Border x:Name="btInventory" MouseDown="btInventory_MouseDown"  Margin="5" Padding="5"
+                        Style="{StaticResource roundButton}" BorderThickness="5" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image x:Name="imgInventory" Source="/Resources/inventory.png" Height="50" Width="50"/>
+                        <TextBlock Text="ИНВЕНТАРЬ" Style="{StaticResource txtButton}" FontSize="28"/>
                     </StackPanel>
                 </Border>
 

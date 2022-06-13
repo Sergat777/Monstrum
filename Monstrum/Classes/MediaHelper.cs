@@ -56,14 +56,14 @@ namespace Monstrum.Classes
             StreamReader reader = new StreamReader(FilesPath + "Story.txt");
             _plot = reader.ReadToEnd().Split('|');
             reader = new StreamReader(FilesPath + "Speaches.txt");
-            string[] speachesText = reader.ReadToEnd().Split('|');
+            string[] speachesText = reader.ReadToEnd().Split(new string[] {"\r\n|"}, StringSplitOptions.None);
             reader = new StreamReader(FilesPath + "Amunitions.txt");
-            string[] descriptions = reader.ReadToEnd().Split('|');
+            string[] descriptions = reader.ReadToEnd().Split(new string[] { "\r\n|" }, StringSplitOptions.None);
             reader = new StreamReader(FilesPath + "BossStory.txt");
-            string[] bossesWords = reader.ReadToEnd().Split('|');
+            string[] bossesWords = reader.ReadToEnd().Split(new string[] { "\r\n|" }, StringSplitOptions.None);
 
             reader.Close();
-            _speaches = new Dictionary<string, string>();
+            _speaches = new Dictionary<string, string>(1000);
             _itemsDescription = new Dictionary<string, string>();
             _bossSpeaches = new Dictionary<string, string>();
 
@@ -110,6 +110,22 @@ namespace Monstrum.Classes
             _currentMusic.Volume = 0.25;
             ControllerManager.DarkScreen.Visibility = Visibility.Visible;
             _timerDarkScreen.Start();
+        }
+
+        public static void BlockUnBlockDarkScreen()
+        {
+            if (ControllerManager.KeysAreEnable)
+            {
+                ControllerManager.DarkScreen.Opacity = 0;
+                ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ControllerManager.DarkScreen.Opacity = 0.8;
+                ControllerManager.DarkScreen.Visibility = Visibility.Visible;
+            }
+
+            ControllerManager.KeysAreEnable = !ControllerManager.KeysAreEnable;
         }
 
         public static void ChangeDark(object sender, EventArgs e)

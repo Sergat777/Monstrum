@@ -10,7 +10,7 @@ namespace Monstrum.Classes
     {
         private static Random rndm = new Random();
 
-        public static byte DifficultLevel { get; set; } = 3;
+        public static byte DifficultLevel { get; set; } = 2;
         public static byte Chapter { get; set; } = 1;
         public static byte MonsterBottomIndex => (byte)((Chapter * 10) - 9);
         public static byte MonsterTopIndex => (byte)(Chapter * 10);
@@ -28,11 +28,16 @@ namespace Monstrum.Classes
         public static float AdditionalHealth { get; set; } = 0;
         public static float AdditionalDamage { get; set; } = 0;
         public static float AdditionalArmor { get; set; } = 0;
-        public static List<GameClasses.EquipmentView> InventoryList { get; set; } = new List<GameClasses.EquipmentView>();
+        public static List<GameClasses.EquipmentView> InventoryList { get; set; }
         public static GameClasses.EquipmentView Hat { get; set; }
         public static GameClasses.EquipmentView Armor { get; set; }
         public static GameClasses.EquipmentView Weapon { get; set; }
         public static GameClasses.EquipmentView Shield { get; set; }
+        public static List<GameClasses.EquipmentView> StartInventoryList { get; set; } = new List<GameClasses.EquipmentView>();
+        public static GameClasses.EquipmentView StartHat { get; set; } = null;
+        public static GameClasses.EquipmentView StartArmor { get; set; } = null;
+        public static GameClasses.EquipmentView StartWeapon { get; set; } = null;
+        public static GameClasses.EquipmentView StartShield { get; set; } = null;
 
 
         public static float TotalDamage { get; set; } = 0;
@@ -49,8 +54,9 @@ namespace Monstrum.Classes
             string monsterName = "monster" + rndm.Next(MonsterBottomIndex, MonsterTopIndex + 1);
             GameClasses.Monster monster =
                 new GameClasses.Monster(monsterName,
-                            (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * (DifficultLevel / 3F) * Chapter, 1),
-                            (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * (DifficultLevel / 5F) * Chapter, 1));
+                            (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * Chapter * (DifficultLevel / 3F), 1),
+                            (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * (DifficultLevel / 4F), 1),
+                            rndm.Next(Chapter - 1, MonsterBottomIndex / 2));
             return monster;
         }
 
@@ -93,12 +99,12 @@ namespace Monstrum.Classes
             if (type == 2 || type == 3 || type == 5)
             {
                 stat = (GameClasses.Stats)rndm.Next(1, 3);
-                value = 5F / type / BloodIndex * Chapter * coolIndex;
+                value = 5F / type * BloodIndex * Chapter * coolIndex;
             }
             else
             {
                 stat = (GameClasses.Stats)rndm.Next(2, 4);
-                value = 3.5F * DifficultLevel / Chapter / BloodIndex * coolIndex;
+                value = 3.5F * DifficultLevel / Chapter * BloodIndex * coolIndex;
             }
 
             GameClasses.Equipment newEquipment = new GameClasses.Equipment(equipmentName, equipmentType, stat, value);
@@ -195,11 +201,13 @@ namespace Monstrum.Classes
                     new Windows.RewardWindow().ShowDialog();
 
                 MediaHelper.SetGameMusic("bossMusic");
-                Boss = new GameClasses.MonsterView(new GameClasses.Boss("CAKE", 7 * DifficultLevel * Chapter * BloodIndex,
+                Boss = new GameClasses.MonsterView(new GameClasses.Boss(Chapter, 7 * DifficultLevel * Chapter * BloodIndex,
                     (9 + DifficultLevel) / 3 * Chapter * BloodIndex, rndm.Next(1, 4 * DifficultLevel) * Chapter));
                 new Windows.BossWindow(Boss.GetMonster().GetName() + "!").ShowDialog();
             }
             else if (FightsCounter == EnemiesCounter * 0.5)
+                new Windows.RewardWindow().ShowDialog();
+            else if (FightsCounter == EnemiesCounter * 0.25)
                 new Windows.RewardWindow().ShowDialog();
 
         }
@@ -211,19 +219,21 @@ namespace Monstrum.Classes
             EnemiesCounter = MonsterTopIndex;
             Boss = null;
 
-            if (Chapter == 1)
-            {
-                Weapon = null;
-                Hat = null;
-                Armor = null;
-                Shield = null;
-                InventoryList = new List<GameClasses.EquipmentView>();
-            }
+            Weapon = StartWeapon;
+            Hat = StartHat;
+            Armor = StartArmor;
+            Shield = StartShield;
+            InventoryList = StartInventoryList;
         }
 
         public static void SetNextChapter()
         {
             StartBloodIndex = BloodIndex;
+            StartInventoryList = InventoryList;
+            StartHat = Hat;
+            StartArmor = Armor;
+            StartShield = Shield;
+            StartWeapon = Weapon;
             Chapter++;
         }
     }
