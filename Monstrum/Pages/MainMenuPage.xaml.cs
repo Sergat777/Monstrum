@@ -25,6 +25,10 @@ namespace Monstrum.Pages
         {
             InitializeComponent();
 
+            imgMusic.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                "music_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingMusic) + ".png"));
+            imgSound.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                 "sound_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingSound) + ".png"));
             Classes.MediaHelper.StartWork();
         }
 

@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monstrum.Windows"
-        mc:Ignorable="d" Height="800"
+        mc:Ignorable="d" Height="800" Width="700"
         WindowStartupLocation="CenterScreen" Style="{StaticResource modalWindow}">
-    <Border Style="{StaticResource roundButton}" Margin="0">
+    <Border Style="{StaticResource roundButton}" Margin="0" HorizontalAlignment="Stretch">
         <DockPanel Margin="20">
             <StackPanel DockPanel.Dock="Top">
                 <Image Height="220" Source="/Resources/win.png"/>

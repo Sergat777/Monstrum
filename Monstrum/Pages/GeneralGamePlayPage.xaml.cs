@@ -58,8 +58,9 @@ namespace Monstrum.Pages
 
         private void btHit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GameSetter.Hero.Attack(GameSetter.Enemy);
             GameSetter.Hero.Regeneration();
+            GameSetter.Hero.Attack(GameSetter.Enemy);
+            GameSetter.UpdateStats();
             GameSetter.TotalDamage += GameSetter.HeroDamage - GameSetter.Enemy.GetMonster().GetArmor();
             MediaHelper.PlayAudio("splashSound");
             BlockUnBlockFrame();
@@ -75,8 +76,9 @@ namespace Monstrum.Pages
 
         private void btBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GameSetter.Hero.Block();
             GameSetter.Hero.Regeneration();
+            GameSetter.UpdateStats();
+            GameSetter.Hero.Block();
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
 
@@ -89,6 +91,7 @@ namespace Monstrum.Pages
         private void btSpare_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GameSetter.Hero.Regeneration();
+            GameSetter.UpdateStats();
             BlockUnBlockFrame();
             pnlAction.Opacity = 0.5;
             if (!GameSetter.Enemy.TryRun(GameSetter.HeroDamage))

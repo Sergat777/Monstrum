@@ -16,23 +16,22 @@ using System.Windows.Shapes;
 namespace Monstrum.Pages.TutorialPages
 {
     /// <summary>
-    /// Interaction logic for TtPage6.xaml
+    /// Interaction logic for TtAdditionalPage.xaml
     /// </summary>
-    public partial class TtPage6 : Page
+    public partial class TtAdditionalPage : Page
     {
-        public TtPage6()
+        public TtAdditionalPage()
         {
             InitializeComponent();
         }
-
         private void btNext_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Classes.ControllerManager.TutorialFrame.Navigate(new TtAdditionalPage());
+            Classes.ControllerManager.TutorialFrame.Navigate(new TtPage7());
         }
 
         private void btPrevious_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Classes.ControllerManager.TutorialFrame.Navigate(new TtPage5());
+            Classes.ControllerManager.TutorialFrame.Navigate(new TtPage6());
         }
     }
 }

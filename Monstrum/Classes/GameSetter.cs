@@ -55,7 +55,7 @@ namespace Monstrum.Classes
             GameClasses.Monster monster =
                 new GameClasses.Monster(monsterName,
                             (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * Chapter * (DifficultLevel / 3F), 1),
-                            (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * (DifficultLevel / 4F), 1),
+                            (float)Math.Round(rndm.Next(MonsterBottomIndex, MonsterTopIndex) * BloodIndex * (DifficultLevel / 3.25F), 1),
                             rndm.Next(Chapter - 1, MonsterBottomIndex / 2));
             return monster;
         }
@@ -188,6 +188,8 @@ namespace Monstrum.Classes
             {
                 if (Boss.IsEscaped())
                     MediaHelper.SetGameMusic("homeMusic");
+                else
+                    MediaHelper.SetGameMusic("bossMusic");
 
                 new Windows.PreWinWindow(Boss.GetMonster().GetName()).ShowDialog();
 
@@ -201,19 +203,19 @@ namespace Monstrum.Classes
                     new Windows.RewardWindow().ShowDialog();
 
                 MediaHelper.SetGameMusic("bossMusic");
-                Boss = new GameClasses.MonsterView(new GameClasses.Boss(Chapter, 7 * DifficultLevel * Chapter * BloodIndex,
-                    (9 + DifficultLevel) / 3 * Chapter * BloodIndex, rndm.Next(1, 4 * DifficultLevel) * Chapter));
+                Boss = new GameClasses.MonsterView(new GameClasses.Boss(Chapter, 10 * DifficultLevel * Chapter * BloodIndex,
+                    (12 + DifficultLevel) / 3 * Chapter * BloodIndex, rndm.Next(1, 3 * DifficultLevel) * Chapter));
                 new Windows.BossWindow(Boss.GetMonster().GetName() + "!").ShowDialog();
             }
-            else if (FightsCounter == EnemiesCounter * 0.5)
-                new Windows.RewardWindow().ShowDialog();
-            else if (FightsCounter == EnemiesCounter * 0.25)
-                new Windows.RewardWindow().ShowDialog();
+            else if (FightsCounter % 7 == 0 && FightsCounter != 0)
+                for (int i = 0; i <= (DifficultLevel + 1) / 2; i++)
+                    new Windows.RewardWindow().ShowDialog();
 
         }
 
         public static void SetStandart()
         {
+            TotalDamage = 0;
             BloodIndex = StartBloodIndex;
             FightsCounter = 0;
             EnemiesCounter = MonsterTopIndex;

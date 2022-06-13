@@ -24,10 +24,10 @@
         </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Border x:Name="btMuteSound" Style="{StaticResource roundButton}" MouseDown="btMuteSound_MouseDown">
-                <Image x:Name="imgSound" Source="/Resources/sound_1.png" Height="75"/>
+                <Image x:Name="imgSound" Height="75"/>
             </Border>
             <Border x:Name="btMuteMusic" Style="{StaticResource roundButton}" MouseDown="btMuteMusic_MouseDown">
-                <Image x:Name="imgMusic" Source="/Resources/music_1.png" Height="75"/>
+                <Image x:Name="imgMusic" Height="75"/>
             </Border>
         </StackPanel>
     </StackPanel>

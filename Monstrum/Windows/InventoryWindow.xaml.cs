@@ -71,9 +71,9 @@ namespace Monstrum.Windows
 
             barHealth.Maximum = GameSetter.HeroMaxHealth;
             barHealth.Value = GameSetter.HeroCurrentHealth;
-            txtHealth.Text = GameSetter.HeroCurrentHealth.ToString() + "/" + GameSetter.HeroMaxHealth;
-            txtDamage.Text = GameSetter.HeroDamage.ToString();
-            txtArmor.Text = GameSetter.HeroArmor.ToString();
+            txtHealth.Text = Math.Round(GameSetter.HeroCurrentHealth, 1).ToString() + "/" + Math.Round(GameSetter.HeroMaxHealth, 1);
+            txtDamage.Text = Math.Round(GameSetter.HeroDamage, 1).ToString();
+            txtArmor.Text = Math.Round(GameSetter.HeroArmor, 1).ToString();
         }
 
         private void btEquip_MouseDown(object sender, MouseButtonEventArgs e)

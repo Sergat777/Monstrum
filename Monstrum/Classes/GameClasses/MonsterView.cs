@@ -106,8 +106,8 @@ namespace Monstrum.Classes.GameClasses
         {
             HorizontalAlignment = HorizontalAlignment.Left,
             VerticalAlignment = VerticalAlignment.Top,
-            Height = 170,
-            Width = 210,
+            Height = 150,
+            Width = 150,
             Background = _regenerationBackgroundImage,
             Visibility = Visibility.Collapsed
         };

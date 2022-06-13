@@ -12,7 +12,7 @@ namespace Monstrum.Windows
     /// </summary>
     public partial class BossWindow : Window
     {
-        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.06) };
+        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.05) };
         private int letterIndex = 0;
         private string currentBossSpeach;
 

@@ -32,7 +32,7 @@ namespace Monstrum.Pages.TutorialPages
 
         private void btPrevious_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Classes.ControllerManager.TutorialFrame.Navigate(new TtPage6());
+            Classes.ControllerManager.TutorialFrame.Navigate(new TtAdditionalPage());
         }
     }
 }

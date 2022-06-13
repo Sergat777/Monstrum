@@ -195,7 +195,7 @@ namespace Monstrum.Classes
 
         private static void MusicFinish(object sender, EventArgs e)
         {
-            if (IsPlayingMusic)
+            if (!IsPlayingMusic)
                 _currentMusic.Volume = 0;
 
             _currentMusic.Position = TimeSpan.Zero;

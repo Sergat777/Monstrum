@@ -54,9 +54,19 @@ namespace Monstrum.Windows
         {
             Classes.ControllerManager.DarkScreen.Opacity = 0;
             Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
-            Classes.GameSetter.SetNextChapter();
-            Classes.ControllerManager.MainAppFrame.Navigate(new Pages.LoadingPage());
             Close();
+            if (Classes.GameSetter.Chapter == 2)
+            {
+                MessageBox.Show("Спасибо за прохождение DEMO версии проекта MONSTRUM,\n" +
+                    "Уважительная просьба, обеспечьте обратную связь, если вам понравилось:)", "DEMO VERSION",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                Classes.ControllerManager.MainAppFrame.Navigate(new Pages.MainMenuPage());
+            }
+            else
+            {
+                Classes.GameSetter.SetNextChapter();
+                Classes.ControllerManager.MainAppFrame.Navigate(new Pages.LoadingPage());
+            }
         }
     }
 }

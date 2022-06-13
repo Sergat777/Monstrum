@@ -20,7 +20,7 @@ namespace Monstrum.Windows
     /// </summary>
     public partial class PreWinWindow : Window
     {
-        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.06) };
+        private DispatcherTimer typingTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.05) };
         private int letterIndex = 0;
         private string currentBossSpeach;
 
@@ -59,9 +59,7 @@ namespace Monstrum.Windows
         private void btOk_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
-            Classes.ControllerManager.DarkScreen.Opacity = 0;
             Classes.MediaHelper.BlockUnBlockDarkScreen();
-            Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
         }
 
         private void DockPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)

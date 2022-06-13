@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monstrum"
         mc:Ignorable="d" KeyDown="Window_KeyDown"
-        Title="MONSTRUM" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Resources/logo.ico">
+        Title="MONSTRUM" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Icon="/Resources/logo.ico" MinWidth="1200" MinHeight="700">
 
     <Grid>
         <Grid Margin="20">

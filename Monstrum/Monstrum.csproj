@@ -75,6 +75,9 @@
     <Compile Include="Pages\TutorialPages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TutorialPages\TtAdditionalPage.xaml.cs">
+      <DependentUpon>TtAdditionalPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TutorialPages\TtPage10.xaml.cs">
       <DependentUpon>TtPage10.xaml</DependentUpon>
     </Compile>
@@ -168,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TutorialPages\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TutorialPages\TtAdditionalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -359,6 +366,12 @@
   <ItemGroup>
     <Resource Include="Resources\music_1.png" />
     <Resource Include="Resources\sound_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\15.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
