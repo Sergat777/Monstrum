@@ -22,7 +22,7 @@ namespace Monstrum.Windows
             ControllerManager.DarkScreen.Visibility = Visibility.Visible;
 
             MediaHelper.SetMonsterImage(imgHero, GameSetter.HeroName);
-            lvInventory.ItemsSource = GameSetter.StartInventoryList;
+            lvInventory.ItemsSource = GameSetter.InventoryList;
             UpdateInventory();
         }
 

@@ -28,7 +28,7 @@ namespace Monstrum.Classes
         public static float AdditionalHealth { get; set; } = 0;
         public static float AdditionalDamage { get; set; } = 0;
         public static float AdditionalArmor { get; set; } = 0;
-        public static List<GameClasses.EquipmentView> InventoryList { get; set; }
+        public static List<GameClasses.EquipmentView> InventoryList { get; set; } = new List<GameClasses.EquipmentView>();
         public static GameClasses.EquipmentView Hat { get; set; }
         public static GameClasses.EquipmentView Armor { get; set; }
         public static GameClasses.EquipmentView Weapon { get; set; }
@@ -218,19 +218,28 @@ namespace Monstrum.Classes
             FightsCounter = 0;
             EnemiesCounter = MonsterTopIndex;
             Boss = null;
+            KillsCounter = 0;
 
             Weapon = StartWeapon;
             Hat = StartHat;
             Armor = StartArmor;
             Shield = StartShield;
-            InventoryList = null;
-            InventoryList = StartInventoryList;
+
+            InventoryList.Clear();
+
+            foreach (var i in StartInventoryList)
+                InventoryList.Add(i);
         }
 
         public static void SetNextChapter()
         {
             StartBloodIndex = BloodIndex;
-            StartInventoryList = InventoryList;
+
+            StartInventoryList.Clear();
+
+            foreach (var i in InventoryList)
+                StartInventoryList.Add(i);
+
             StartHat = Hat;
             StartArmor = Armor;
             StartShield = Shield;

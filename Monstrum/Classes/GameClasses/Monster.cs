@@ -92,6 +92,17 @@ namespace Monstrum.Classes.GameClasses
             _armor = armor;
         }
 
+        virtual public float Regeneration()
+        {
+            if (_health <= _maxHealth * 0.7)
+            {
+                float regenHealth = (float)Math.Round(_maxHealth * 0.05, 1);
+                _health += regenHealth;
+                return regenHealth;
+            }
+            return 0;
+        }
+
         virtual public bool TryRun(float potentionalDamage)
         {
             if (potentionalDamage >= _health)

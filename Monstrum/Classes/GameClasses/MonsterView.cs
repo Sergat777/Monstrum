@@ -14,7 +14,6 @@ namespace Monstrum.Classes.GameClasses
     internal class MonsterView : DockPanel
     {
         private Monster _monster;
-        private Random _rndm = new Random();
         private static ImageBrush _dialogBackgroundImage = new ImageBrush()
         {
             ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "wordBG.png"))
@@ -22,6 +21,10 @@ namespace Monstrum.Classes.GameClasses
         private static ImageBrush _hitBackgroundImage = new ImageBrush()
         {
             ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "hitBG.png"))
+        };
+        private static ImageBrush _regenerationBackgroundImage = new ImageBrush()
+        {
+            ImageSource = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "regenerationBG.png"))
         };
         private DockPanel _healthPanel = new DockPanel()
         {
@@ -99,9 +102,27 @@ namespace Monstrum.Classes.GameClasses
             Source = new BitmapImage(new Uri(MediaHelper.BackgroundsPath + "shieldBG.png")),
             Visibility = Visibility.Collapsed
         };
+        private Grid _regenBlock = new Grid()
+        {
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top,
+            Height = 170,
+            Width = 210,
+            Background = _regenerationBackgroundImage,
+            Visibility = Visibility.Collapsed
+        };
+        private TextBlock _regenHealthBlock = new TextBlock()
+        {
+            FontSize = 20,
+            Foreground = Brushes.Black,
+            Margin = new Thickness(10),
+            VerticalAlignment = VerticalAlignment.Center,
+            FontWeight = FontWeights.Bold
+        };
         private DispatcherTimer timerTalk = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
         private DispatcherTimer timerHit = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.65) };
         private DispatcherTimer timerBlock = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.65) };
+        private DispatcherTimer timerRegen = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.65) };
 
         public MonsterView(Monster monster)
         {
@@ -111,6 +132,7 @@ namespace Monstrum.Classes.GameClasses
             timerTalk.Tick += ShutUp;
             timerHit.Tick += HideHit;
             timerBlock.Tick += HideBlock;
+            timerRegen.Tick += HideRegen;
 
             // Update controls
             UpdateHealthPanel();
@@ -130,11 +152,13 @@ namespace Monstrum.Classes.GameClasses
             Children.Add(_healthPanel);
 
             // add image panel
-            _damageBlock.Children.Add(_hitBlock);
+            _regenBlock.Children.Add(_regenHealthBlock);
             _dialogBlock.Children.Add(_speachBlock);
+            _damageBlock.Children.Add(_hitBlock);
             _imagePanel.Children.Add(_monsterImage);
-            _imagePanel.Children.Add(_damageBlock);
+            _imagePanel.Children.Add(_regenBlock);
             _imagePanel.Children.Add(_dialogBlock);
+            _imagePanel.Children.Add(_damageBlock);
             _imagePanel.Children.Add(_blockImage);
             _imagePanel.SetValue(DockProperty, Dock.Top);
             Children.Add(_imagePanel);
@@ -153,6 +177,14 @@ namespace Monstrum.Classes.GameClasses
             else
                 Speak();
             return _monster.GetIsEscaped();
+        }
+
+        public void Regeneration()
+        {
+            float regeneratedHealth = _monster.Regeneration();
+
+            if (regeneratedHealth > 0)
+                ShowRegen(regeneratedHealth);
         }
 
         public void Speak()
@@ -196,6 +228,19 @@ namespace Monstrum.Classes.GameClasses
         {
             _blockImage.Visibility = Visibility.Collapsed;
             timerBlock.Stop();
+        }
+
+        public void ShowRegen(float addedHealth)
+        {
+            _regenBlock.Visibility = Visibility.Visible;
+            _regenHealthBlock.Text = Math.Round(addedHealth, 1).ToString();
+            timerRegen.Start();
+        }
+
+        public void HideRegen(object sender, EventArgs e)
+        {
+            _regenBlock.Visibility = Visibility.Collapsed;
+            timerRegen.Stop();
         }
 
         public void Block()
