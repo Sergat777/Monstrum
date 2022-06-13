@@ -5,22 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Monstrum.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="MainMenuPage">
 
     <StackPanel>
-        <Border x:Name="btPlay" Style="{StaticResource roundButton}" MouseDown="btPlay_MouseDown" Width="400">
+        <Border x:Name="btPlay" Style="{StaticResource roundButton}" MouseDown="btPlay_MouseDown" Width="500">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Image Source="/Resources/creator2.png" Margin="10" Height="50"/>
                 <TextBlock Text="ИГРАТЬ" Style="{StaticResource txtButton}"/>
                 <Image Source="/Resources/creator3.png" Margin="10" Height="50"/>
             </StackPanel>
         </Border>
-        <Border x:Name="btCreator" Style="{StaticResource roundButton}" MouseDown="btCreator_MouseDown" Width="400">
+        <Border x:Name="btCreator" Style="{StaticResource roundButton}" MouseDown="btCreator_MouseDown" Width="500">
             <TextBlock Text="СОЗДАТЕЛЬ" Style="{StaticResource txtButton}"/>
         </Border>
-        <Border x:Name="btClose" Style="{StaticResource roundButton}" MouseDown="btClose_MouseDown" Width="400">
+        <Border x:Name="btClose" Style="{StaticResource roundButton}" MouseDown="btClose_MouseDown" Width="500">
             <TextBlock Text="ВЫХОД" Style="{StaticResource txtButton}"/>
         </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Border x:Name="btMuteSound" Style="{StaticResource roundButton}" MouseDown="btMuteSound_MouseDown">
+                <Image x:Name="imgSound" Source="/Resources/sound_1.png" Height="75"/>
+            </Border>
+            <Border x:Name="btMuteMusic" Style="{StaticResource roundButton}" MouseDown="btMuteMusic_MouseDown">
+                <Image x:Name="imgMusic" Source="/Resources/music_1.png" Height="75"/>
+            </Border>
+        </StackPanel>
     </StackPanel>
 </Page>

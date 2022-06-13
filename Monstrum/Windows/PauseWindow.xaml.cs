@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Monstrum.Windows
 {
@@ -11,6 +13,10 @@ namespace Monstrum.Windows
         public PauseWindow()
         {
             InitializeComponent();
+            imgMusic.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                "music_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingMusic) + ".png"));
+            imgSound.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                 "sound_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingSound) + ".png"));
             Classes.ControllerManager.DarkScreen.Opacity = 0.8;
             Classes.ControllerManager.DarkScreen.Visibility = Visibility.Visible;
         }
@@ -49,6 +55,20 @@ namespace Monstrum.Windows
                 Classes.ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
                 Close();
             }
+        }
+
+        private void btMuteMusic_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Classes.MediaHelper.SetMusicMute();
+            imgMusic.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                "music_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingMusic) + ".png"));
+        }
+
+        private void btMuteSound_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Classes.MediaHelper.IsPlayingSound = !Classes.MediaHelper.IsPlayingSound;
+            imgSound.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                "sound_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingSound) + ".png"));
         }
     }
 }

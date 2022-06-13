@@ -223,6 +223,7 @@ namespace Monstrum.Classes
             Hat = StartHat;
             Armor = StartArmor;
             Shield = StartShield;
+            InventoryList = null;
             InventoryList = StartInventoryList;
         }
 

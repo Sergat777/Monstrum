@@ -7,11 +7,23 @@
         mc:Ignorable="d" KeyDown="Window_KeyDown"
         WindowStartupLocation="CenterScreen" Style="{StaticResource modalWindow}">
     <Border Style="{StaticResource roundButton}" Background="{StaticResource paleYellow}"
-            HorizontalAlignment="Stretch" Margin="0">
+            HorizontalAlignment="Stretch" Margin="0" Padding="5">
 
         <StackPanel Margin="20">
 
-            <TextBlock Text="ПАУЗА" Style="{StaticResource txtButton}"/>
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Border x:Name="btMuteSound" Style="{StaticResource roundButton}" Margin="5" BorderThickness="5"
+                        MouseDown="btMuteSound_MouseDown" VerticalAlignment="Center">
+                        <Image x:Name="imgSound" Source="/Resources/sound_1.png" Height="40"/>
+                    </Border>
+                    <Border x:Name="btMuteMusic" Style="{StaticResource roundButton}" Margin="5" BorderThickness="5"
+                        MouseDown="btMuteMusic_MouseDown" VerticalAlignment="Center">
+                        <Image x:Name="imgMusic" Source="/Resources/music_1.png" Height="40"/>
+                    </Border>
+                </StackPanel>
+                <TextBlock Text="ПАУЗА" Style="{StaticResource txtButton}"/>
+            </DockPanel>
 
             <Border x:Name="btContinue" MouseDown="btContinue_MouseDown"
                     HorizontalAlignment="Stretch" Style="{StaticResource roundButton}">

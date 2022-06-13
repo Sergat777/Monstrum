@@ -43,5 +43,19 @@ namespace Monstrum.Pages
             if (new Windows.QuestionWindow().ShowDialog().Value)
                 Application.Current.Shutdown();
         }
+
+        private void btMuteMusic_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Classes.MediaHelper.SetMusicMute();
+            imgMusic.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                "music_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingMusic) + ".png"));
+        }
+
+        private void btMuteSound_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Classes.MediaHelper.IsPlayingSound = !Classes.MediaHelper.IsPlayingSound;
+            imgSound.Source = new BitmapImage(new Uri(Classes.MediaHelper.ImagesPath +
+                "sound_" + Convert.ToInt16(Classes.MediaHelper.IsPlayingSound) + ".png"));
+        }
     }
 }

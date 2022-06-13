@@ -34,6 +34,9 @@ namespace Monstrum.Classes
         public static string BossesPath = ImagesPath + "Bosses\\";
         public static string MonstersPath = ImagesPath + "Monsters\\";
 
+        public static bool IsPlayingMusic = true;
+        public static bool IsPlayingSound = true;
+
         private static MediaPlayer _currentMusic = new MediaPlayer();
 
 
@@ -101,7 +104,7 @@ namespace Monstrum.Classes
 
         public static void GoNewScreen(Page nextPage, string soundName = null)
         {
-            if (soundName != null)
+            if (soundName != null && IsPlayingSound)
                 PlayAudio(soundName);
 
             _opacityDarkScreen = 0;
@@ -133,6 +136,10 @@ namespace Monstrum.Classes
             if (_opacityDarkScreen >= 1)
             {
                 _opasityGrow = false;
+
+                if (!IsPlayingMusic)
+                    _currentMusic.Volume = 0;
+
                 ControllerManager.MainAppFrame.Navigate(_nextPage);
             }
 
@@ -145,7 +152,6 @@ namespace Monstrum.Classes
 
             if (_opacityDarkScreen == 0)
             {
-                _currentMusic.Volume = 0.25;
                 ControllerManager.DarkScreen.Visibility = Visibility.Collapsed;
                 _timerDarkScreen.Stop();
             }
@@ -189,6 +195,9 @@ namespace Monstrum.Classes
 
         private static void MusicFinish(object sender, EventArgs e)
         {
+            if (IsPlayingMusic)
+                _currentMusic.Volume = 0;
+
             _currentMusic.Position = TimeSpan.Zero;
             _currentMusic.Play();
         }
@@ -197,13 +206,29 @@ namespace Monstrum.Classes
         {
             MediaPlayer player = new MediaPlayer();
             player.Open(new Uri(SoundsPath + soundName + ".wav"));
-            player.Play();
+
+            if (IsPlayingSound)
+                player.Play();
+        }
+
+        public static void SetMusicMute()
+        {
+            if (IsPlayingMusic)
+                _currentMusic.Volume = 0;
+            else
+                _currentMusic.Volume = 30;
+
+            IsPlayingMusic = !IsPlayingMusic;
         }
 
         public static void SetGameMusic(string musicName)
         {
             _currentMusic.Stop();
             _currentMusic.Open(new Uri(SoundsPath + musicName + ".wav"));
+
+            if (!IsPlayingMusic)
+                _currentMusic.Volume = 0;
+
             _currentMusic.Play();
         }
 
